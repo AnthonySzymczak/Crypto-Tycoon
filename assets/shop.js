@@ -54,13 +54,26 @@ $(document).ready(function () {
 */
 
 //                                      Processors 
-
-
-
-
+/*
+1) AMD ryzen 3: $200
+2)AMD ryzen 5: $300
+3)AMD ryzen 7:    $400
+4)AMD ryzen 9 :   $800
+5)AMD threadripper 3960x :$1500
+6) THA SHREDDER: $5000
+*/
 
 //                                     Motherboards 
+/*
+1)ASUS b450: $150 
+2)ASUS b550: $250
+3)ASUS x570:$350
+4)ASUS Godlike 570: $700
+5)AORUS XTREME: $2000
+6)MEGAVBOARD: $5000
 
+
+*/
 
 
 
