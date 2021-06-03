@@ -1,4 +1,4 @@
-/* In this attached file you will see an interactive shop user interface 
+/* In this .js file you will see an interactive shop user interface 
     you will notice a clean interface with many purchaseable upgrades */
 
 //Calls document first
