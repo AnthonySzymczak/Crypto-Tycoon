@@ -21,16 +21,16 @@ $(document).ready(function () {
 1)  Asus gt 1030 2gb:     $125
    on.click addTo(current build).removeBuild
     ____________________________
-2)  Asus GTX 1050Ti:      $290
+2)  Asus GTX 1050Ti:      $300
     on.click addTo(current build).removeBuild
     ____________________________
-3)  Asus RTX 2060:        $610
+3)  Asus RTX 2060:        $650
     on.click addTo(current build).removeBuild	    
     ____________________________
 4)  Asus 6700 XT:       $1300
     on.click addTo(current build).removeBuild
     _____________________________
-5)  Saphire RX 6900:      $2310
+5)  Saphire RX 6900:      $2600
     on.click addTo(current build).removeBuild
   _______________________________
 6)  NVIDIA RTX 3080Ti: $5000   	
@@ -58,6 +58,8 @@ $(document).ready(function () {
 
 
 */
+
+
 
 
 
