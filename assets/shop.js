@@ -1,8 +1,7 @@
 /* In this .js file you will see an interactive shop user interface 
     you will notice a clean interface with many purchaseable upgrades */
 
-//Calls document first
-$(document).ready(function () {
+
 
 //Savebutton/ local storage setup
 /*
@@ -34,4 +33,3 @@ function get(){
 }
 get();
 */
-})
