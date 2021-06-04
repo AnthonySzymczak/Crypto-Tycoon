@@ -5,10 +5,14 @@
 $(document).ready(function () {
 
 //Savebutton/ local storage setup
+/*
 $(".button").on("click",function(){
     for(let i=1; i <= 18; i++)
     save(i);
 })
+
+
+
 
 let storedItem = localStorage.getItem("storedItem");
 
@@ -29,5 +33,5 @@ function get(){
     }
 }
 get();
-
+*/
 })
