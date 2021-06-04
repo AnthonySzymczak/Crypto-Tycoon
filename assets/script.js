@@ -10,6 +10,21 @@ var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fs
 var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${currencies}&tsyms=${cryptoCurrency}&api_key=${API_KEY}`
 //used in cryptoToUSD function
 var value = 0
+var increaseCrypto = 1
+var usdConversion = 0
+var cryptoHeld = 0
+var USDHeld = 0
+var clickCount=0
+function incrementOnClick(){
+    cryptoHeld += increaseCrypto
+    return cryptoHeld
+}
+function convertToUSD(currentPrice,cryptoHeld){
+    usdConversion = cryptoHeld.toFixed(5) * currentPrice
+    return usdConversion
+}
+
+function cryptoToUSD(CRYPTO_USD_PRICE_API,cryptoHeld)
 var increment = .25
 var usdConversion = 0
 
@@ -30,10 +45,10 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API)
     fetch(CRYPTO_USD_PRICE_API).then(function(response){
         return response.json()
     }).then(function(data){
-        value += increment; 
-        // console.log(value,usdConversion)
-        usdConversion = value.toFixed(5) * data.BTC.USD.toFixed(5)
-        // console.log(value,usdConversion)
+        currentPrice = data.DOGE.USD.toFixed(2)
+        $("#cryptoPrice").text(currentPrice)
+        $("#currentUSD").text(convertToUSD(currentPrice,clickCount))
+      //  return convertToUSD(currentPrice,cryptoHeld)
     })
 }
 function USDToCrypto(USD_CRYPTO_PRICE_API)
@@ -47,6 +62,31 @@ function USDToCrypto(USD_CRYPTO_PRICE_API)
 }
 // setInterval(function(){
 //     cryptoToUSD(CRYPTO_USD_PRICE_API)
+// },5000)
+
+
+
+USDToCrypto(USD_CRYPTO_PRICE_API)
+
+function testHeader() {
+    $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
+    $("<h1>").attr({"id":"cryptoPrice"}).appendTo("#headerContainer")
+    $("<h1>").attr({"id":"currentUSD"}).appendTo("#headerContainer")
+    $("<h2>").attr({"id":"currentCrypto"}).appendTo("#headerContainer")
+    $("<h1>").text("ClickHere").attr({"id":"clickHere"}).appendTo("#headerContainer")
+    $("<h1>").text("Calculate").attr({"id":"clickHere"}).appendTo("#headerContainer")
+}
+testHeader()
+
+$("#clickHere").on("click",function(){
+    $("#currentCrypto").text(clickCount)   
+      cryptoToUSD(CRYPTO_USD_PRICE_API) 
+
+});
+
+// $("#Calculate").on("click",function(){
+// cryptoToUSD(CRYPTO_USD_PRICE_API) 
+// });
 //     storeCurrency
 // },2000)
     USDToCrypto(USD_CRYPTO_PRICE_API)
