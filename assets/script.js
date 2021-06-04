@@ -1,4 +1,8 @@
 //DOGE - DOGE COIN BTC - BITCOIN ETH - ETHEREUM
+var strtbtn = $("#startGame")
+var strtPage= $("#crypto")
+var gamePage = $("#gamePage")
+var shopPage = $("#shopContainer")
 const API_KEY = "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444"
 var cryptoCurrency = "DOGE,ETH,BTC";
 const currencies = "USD"; 
@@ -21,6 +25,22 @@ function convertToUSD(currentPrice,cryptoHeld){
 }
 
 function cryptoToUSD(CRYPTO_USD_PRICE_API,cryptoHeld)
+var increment = .25
+var usdConversion = 0
+
+gamePage.hide()
+shopPage.hide()
+strtbtn.click(loadGamePage)
+
+    function loadGamePage(){
+        strtPage.hide()
+        gamePage.show()
+        // shopPage.show()
+    console.log("bruh")}
+
+
+
+function cryptoToUSD(CRYPTO_USD_PRICE_API)
 {
     fetch(CRYPTO_USD_PRICE_API).then(function(response){
         return response.json()
@@ -36,7 +56,7 @@ function USDToCrypto(USD_CRYPTO_PRICE_API)
     fetch(USD_CRYPTO_PRICE_API).then(function(response){
         console.log(response.json())
     }).then(function(data){
-        console.log(data)
+        // console.log(data)
         
     });
 }
@@ -67,3 +87,12 @@ $("#clickHere").on("click",function(){
 // $("#Calculate").on("click",function(){
 // cryptoToUSD(CRYPTO_USD_PRICE_API) 
 // });
+//     storeCurrency
+// },2000)
+    USDToCrypto(USD_CRYPTO_PRICE_API)
+    
+    function storeCurrency(){
+    localStorage.setItem("crypto-held",value)
+    localStorage.setItem("USD-held",usdConversion)
+    }
+console.log(localStorage)

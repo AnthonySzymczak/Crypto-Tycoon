@@ -4,5 +4,49 @@
     box-sizing: border-box;
 }
 h1{
-    color:blue
+   
+    color:gold;
+    font-weight: bold;
+    display: center;
+    font-size: 40px;
+    display:block;
+    text-align: center;
 }
+
+.row {
+    white-space: pre-wrap;
+    height: 80px;
+    border-top: 1px solid white;;
+  }
+  .column{
+      column-count: 2;
+      width: fit-content;
+      position: relative;
+      justify-content: space-between;
+  }
+.begin{
+    color: white;
+    padding: 15px 32px;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    margin:auto;
+    background-color: green;
+    border: 2px solid black;
+}
+
+.begin:hover{
+    background:blue;
+}
+.center{
+    margin: 0 auto;
+    width: 400px;
+    
+}
+html { 
+    background: url(../assets/images/bitcoin-1813503_1280.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} 
