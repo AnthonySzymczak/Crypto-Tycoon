@@ -4,6 +4,7 @@ const CURRENCIES = "USD";
 const DOGE_HASHRATE = .25
 const SAVED_VARIABLES = 2
 const CRYPTOCURRENCIES = "DOGE,ETH,BTC";
+const DECIMAL_POINTS = 2
 var strtbtn = $("#startGame")
 var strtPage= $("#crypto")
 var gamePage = $("#gamePage")
@@ -37,13 +38,13 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     fetch(CRYPTO_USD_PRICE_API).then(function (response) {
         return response.json()
     }).then(function (data) {
-        var currentPrice = data.DOGE.USD.toFixed(2)
+        var currentPrice = data.DOGE.USD.toFixed(DECIMAL_POINTS)
         $("#cryptoPrice").text("The Current Price of Doge Coin is: $" + currentPrice + " per coin")
         $("#currentUSD").text("")
         $("#currentUSD").text(
             "You have converted " + cryptoHeld
-            + " Doge Coin to $" + conversionAmount(currentPrice, cryptoHeld).toFixed(2)
-            + "\nYour Total is: $" + conversionTotal(currentPrice, cryptoHeld).toFixed(2) + " Dollars")
+            + " Doge Coin to $" + conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS)
+            + "\nYour Total is: $" + conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) + " Dollars")
     })
 }
 function storeCurrency() {
@@ -67,14 +68,14 @@ function loadUSDConversion() {
 function displayCurrentValues(clickCount, usdConversion) {
     console.log(clickCount,usdConversion)
     usdConversion = parseFloat(usdConversion)
-    $("#currentUSD").text("Dollars Available: $"+ usdConversion.toFixed(2))
+    $("#currentUSD").text("Dollars Available: $"+ usdConversion.toFixed(DECIMAL_POINTS))
     cryptoHeld = convertDoge(clickCount)
     $("#currentCrypto").text("Doge Coins:"+cryptoHeld)
     }
 function testHeader() {
     $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
     $("<h1>").attr({"id":"cryptoPrice"}).appendTo("#headerContainer")
-    $("<h1>").text("Dollars Available: $"+usdConversion.toFixed(2)).attr({"id":"currentUSD"}).appendTo("#headerContainer")
+    $("<h1>").text("Dollars Available: $"+usdConversion.toFixed(DECIMAL_POINTS)).attr({"id":"currentUSD"}).appendTo("#headerContainer")
     $("<h2>").text("Doge Coins:"+cryptoHeld).attr({"id":"currentCrypto"}).appendTo("#headerContainer")
     $("<h1>").text("ClickHere").attr({"id":"increment"}).appendTo("#headerContainer")
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
