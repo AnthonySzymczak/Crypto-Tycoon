@@ -1,20 +1,21 @@
 //DOGE - DOGE COIN BTC - BITCOIN ETH - ETHEREUM
+const API_KEY = "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444"
+const CURRENCIES = "USD"; 
+const DOGE_HASHRATE = .25
+const SAVED_VARIABLES = 2
+const CRYPTOCURRENCIES = "DOGE,ETH,BTC";
 var strtbtn = $("#startGame")
 var strtPage= $("#crypto")
 var gamePage = $("#gamePage")
 var shopPage = $("#shopContainer")
-const API_KEY = "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444"
-var cryptoCurrency = "DOGE,ETH,BTC";
-const currencies = "USD"; 
-var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${cryptoCurrency}&tsyms=${currencies}&api_key=${API_KEY}`
-var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${currencies}&tsyms=${cryptoCurrency}&api_key=${API_KEY}`
+var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
+var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CURRENCIES}&tsyms=${CRYPTOCURRENCIES}&api_key=${API_KEY}`
 //used in cryptoToUSD function
-const DOGE_HASHRATE = .25
 var usdConversion = 0
 var cryptoHeld = 0
 var clickCount=0
 
-if(localStorage.length<2)
+if(localStorage.length< SAVED_VARIABLES)
 {
     var usdConversion = 0
     var clickCount=0
