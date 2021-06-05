@@ -23,32 +23,28 @@ if(localStorage.length<2)
     clickCount = loadClicks()
 }
 
-
 gamePage.hide()
 shopPage.hide()
 strtbtn.click(loadGamePage)
 
-    function loadGamePage(){
-        strtPage.hide()
-        gamePage.show()
-        // shopPage.show()
-    console.log("bruh")}
-
-    function cryptoToUSD(CRYPTO_USD_PRICE_API)
-    {
-        fetch(CRYPTO_USD_PRICE_API).then(function(response){
-            return response.json()
-        }).then(function(data){
-            var currentPrice = data.DOGE.USD.toFixed(2)
-            $("#cryptoPrice").text("The Current Price of Doge Coin is: $" + currentPrice + " per coin")
-            $("#currentUSD").text("")
-            $("#currentUSD").text(
-               "You have converted "+ cryptoHeld
-             + " Doge Coin to $" + conversionAmount(currentPrice,cryptoHeld).toFixed(2)
-             + "\nYour Total is: $" + conversionTotal(currentPrice,cryptoHeld).toFixed(2) + " Dollars")
-        })
-    }
-
+function loadGamePage() {
+    strtPage.hide()
+    gamePage.show()
+    // shopPage.show()
+}
+function cryptoToUSD(CRYPTO_USD_PRICE_API) {
+    fetch(CRYPTO_USD_PRICE_API).then(function (response) {
+        return response.json()
+    }).then(function (data) {
+        var currentPrice = data.DOGE.USD.toFixed(2)
+        $("#cryptoPrice").text("The Current Price of Doge Coin is: $" + currentPrice + " per coin")
+        $("#currentUSD").text("")
+        $("#currentUSD").text(
+            "You have converted " + cryptoHeld
+            + " Doge Coin to $" + conversionAmount(currentPrice, cryptoHeld).toFixed(2)
+            + "\nYour Total is: $" + conversionTotal(currentPrice, cryptoHeld).toFixed(2) + " Dollars")
+    })
+}
 function storeCurrency() {
     localStorage.setItem("crypto-held", value)
     localStorage.setItem("USD-held", usdConversion)
@@ -104,7 +100,11 @@ function conversionTotal(currentPrice,cryptoHeld){
     resetValues()
     return usdConversion
 }
-
+function resetValues() {
+    clickCount = 0
+    cryptoHeld = 0
+    $("#currentCrypto").text(cryptoHeld)
+}
 testHeader()
 loadCurrency(clickCount,usdConversion)
 
