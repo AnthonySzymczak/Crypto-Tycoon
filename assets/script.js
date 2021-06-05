@@ -39,13 +39,12 @@ strtbtn.click(loadGamePage)
              + " Doge Coin to $" + conversionAmount(currentPrice,cryptoHeld).toFixed(2)
              + "\nYour Total is: $" + conversionTotal(currentPrice,cryptoHeld).toFixed(2) + " Dollars")
         })
-    }    
-    
-    function storeCurrency(){
+    }
+
+function storeCurrency(){
     localStorage.setItem("crypto-held",value)
     localStorage.setItem("USD-held",usdConversion)
     }
-console.log(localStorage)
 
 function testHeader() {
     $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
@@ -66,6 +65,16 @@ function updateCount(){
 function convertDoge(clickCount){
     cryptoHeld = clickCount * DOGE_HASHRATE
     return cryptoHeld
+}
+function conversionAmount(currentPrice,cryptoHeld)
+{
+    var convertedTo=cryptoHeld.toFixed(5) * currentPrice
+    return convertedTo 
+}
+function conversionTotal(currentPrice,cryptoHeld){
+    usdConversion += conversionAmount(currentPrice,cryptoHeld)
+    resetValues()
+    return usdConversion
 }
 testHeader()
 
