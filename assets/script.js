@@ -46,7 +46,7 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     })
 }
 function storeCurrency() {
-    localStorage.setItem("crypto-held", value)
+    localStorage.setItem("crypto-held", clickCount)
     localStorage.setItem("USD-held", usdConversion)
 }
 function loadCurrency(clickCount, usdConversion) {
