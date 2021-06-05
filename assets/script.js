@@ -41,11 +41,31 @@ strtbtn.click(loadGamePage)
         })
     }
 
-function storeCurrency(){
-    localStorage.setItem("crypto-held",value)
-    localStorage.setItem("USD-held",usdConversion)
+function storeCurrency() {
+    localStorage.setItem("crypto-held", value)
+    localStorage.setItem("USD-held", usdConversion)
+}
+function loadCurrency(clickCount, usdConversion) {
+    clickCount = loadClicks()
+    usdConversion = loadUSDConversion()
+    displayCurrentValues(clickCount, usdConversion)
+}
+function loadClicks() {
+    var clickCount = localStorage.getItem("crypto-held")
+    return clickCount
+}
+function loadUSDConversion() {
+    var usdConversion = localStorage.getItem("USD-held")
+    usdConversion = parseFloat(usdConversion)
+    return usdConversion
+}
+function displayCurrentValues(clickCount, usdConversion) {
+    console.log(clickCount,usdConversion)
+    usdConversion = parseFloat(usdConversion)
+    $("#currentUSD").text("Dollars Available: $"+ usdConversion.toFixed(2))
+    cryptoHeld = convertDoge(clickCount)
+    $("#currentCrypto").text("Doge Coins:"+cryptoHeld)
     }
-
 function testHeader() {
     $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
     $("<h1>").attr({"id":"cryptoPrice"}).appendTo("#headerContainer")
