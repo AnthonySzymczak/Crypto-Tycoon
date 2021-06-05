@@ -9,12 +9,20 @@ const currencies = "USD";
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${cryptoCurrency}&tsyms=${currencies}&api_key=${API_KEY}`
 var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${currencies}&tsyms=${cryptoCurrency}&api_key=${API_KEY}`
 //used in cryptoToUSD function
-var value = 0
-var increaseCrypto = 1
+const DOGE_HASHRATE = .25
 var usdConversion = 0
 var cryptoHeld = 0
-var USDHeld = 0
 var clickCount=0
+
+if(localStorage.length<2)
+{
+    var usdConversion = 0
+    var clickCount=0
+} else {
+    usdConversion = loadUSDConversion()
+    clickCount = loadClicks()
+}
+
 
 gamePage.hide()
 shopPage.hide()
@@ -96,7 +104,9 @@ function conversionTotal(currentPrice,cryptoHeld){
     resetValues()
     return usdConversion
 }
+
 testHeader()
+loadCurrency(clickCount,usdConversion)
 
 $("#increment").on("click",function(event){
     event.preventDefault()
