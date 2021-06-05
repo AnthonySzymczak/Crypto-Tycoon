@@ -11,10 +11,12 @@ var strtbtn = $("#startGame")
 var strtPage= $("#crypto")
 var gamePage = $("#gamePage")
 var shopPage = $("#shopContainer")
+
 //API KEYS
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
 var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CURRENCIES}&tsyms=${CRYPTOCURRENCIES}&api_key=${API_KEY}`
 //VARIABLES FOR CONVERSION
+
 var usdConversion = 0
 var cryptoHeld = 0
 var clickCount=0
@@ -42,6 +44,7 @@ function loadGamePage() {
 function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     fetch(CRYPTO_USD_PRICE_API).then(function (response) {
         return response.json()
+
     }).then(function (data) {
         var currentPrice = data.DOGE.USD.toFixed(DECIMAL_POINTS)
         $("#cryptoPrice").text("The Current Price of Doge Coin is: $" + currentPrice + " per coin")
