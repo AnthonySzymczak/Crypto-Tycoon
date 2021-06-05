@@ -16,15 +16,6 @@ var cryptoHeld = 0
 var USDHeld = 0
 var clickCount=0
 
-function convertToUSD(currentPrice,cryptoHeld){
-    usdConversion = cryptoHeld.toFixed(5) * currentPrice
-    return usdConversion
-}
-
-function cryptoToUSD(CRYPTO_USD_PRICE_API,cryptoHeld)
-var increment = .25
-var usdConversion = 0
-
 gamePage.hide()
 shopPage.hide()
 strtbtn.click(loadGamePage)
@@ -35,50 +26,20 @@ strtbtn.click(loadGamePage)
         // shopPage.show()
     console.log("bruh")}
 
-
-
-function cryptoToUSD(CRYPTO_USD_PRICE_API)
-{
-    fetch(CRYPTO_USD_PRICE_API).then(function(response){
-        return response.json()
-    }).then(function(data){
-        currentPrice = data.DOGE.USD.toFixed(2)
-        $("#cryptoPrice").text(currentPrice)
-        $("#currentUSD").text(convertToUSD(currentPrice,clickCount))
-      //  return convertToUSD(currentPrice,cryptoHeld)
-    })
-}
-function USDToCrypto(USD_CRYPTO_PRICE_API)
-{
-    fetch(USD_CRYPTO_PRICE_API).then(function(response){
-        console.log(response.json())
-    }).then(function(data){
-        // console.log(data)
-        
-    });
-}
-// setInterval(function(){
-//     cryptoToUSD(CRYPTO_USD_PRICE_API)
-// },5000)
-
-
-
-USDToCrypto(USD_CRYPTO_PRICE_API)
-
-
-
-$("#clickHere").on("click",function(){
-    $("#currentCrypto").text(clickCount)   
-      cryptoToUSD(CRYPTO_USD_PRICE_API) 
-
-});
-
-// $("#Calculate").on("click",function(){
-// cryptoToUSD(CRYPTO_USD_PRICE_API) 
-// });
-//     storeCurrency
-// },2000)
-    USDToCrypto(USD_CRYPTO_PRICE_API)
+    function cryptoToUSD(CRYPTO_USD_PRICE_API)
+    {
+        fetch(CRYPTO_USD_PRICE_API).then(function(response){
+            return response.json()
+        }).then(function(data){
+            var currentPrice = data.DOGE.USD.toFixed(2)
+            $("#cryptoPrice").text("The Current Price of Doge Coin is: $" + currentPrice + " per coin")
+            $("#currentUSD").text("")
+            $("#currentUSD").text(
+               "You have converted "+ cryptoHeld
+             + " Doge Coin to $" + conversionAmount(currentPrice,cryptoHeld).toFixed(2)
+             + "\nYour Total is: $" + conversionTotal(currentPrice,cryptoHeld).toFixed(2) + " Dollars")
+        })
+    }    
     
     function storeCurrency(){
     localStorage.setItem("crypto-held",value)
