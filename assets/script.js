@@ -15,10 +15,7 @@ var usdConversion = 0
 var cryptoHeld = 0
 var USDHeld = 0
 var clickCount=0
-function incrementOnClick(){
-    cryptoHeld += increaseCrypto
-    return cryptoHeld
-}
+
 function convertToUSD(currentPrice,cryptoHeld){
     usdConversion = cryptoHeld.toFixed(5) * currentPrice
     return usdConversion
@@ -97,6 +94,13 @@ function testHeader() {
     $("<h1>").text("ClickHere").attr({"id":"increment"}).appendTo("#headerContainer")
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
     $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
+}
+
+function updateCount(){
+    cryptoHeld = convertDoge(clickCount)
+    if(cryptoHeld == NaN)
+    cryptoHeld = 0
+    $("#currentCrypto").text("Doge Coins:"+cryptoHeld)
 }
 
 testHeader()
