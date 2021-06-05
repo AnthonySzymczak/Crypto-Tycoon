@@ -102,7 +102,10 @@ function updateCount(){
     cryptoHeld = 0
     $("#currentCrypto").text("Doge Coins:"+cryptoHeld)
 }
-
+function convertDoge(clickCount){
+    cryptoHeld = clickCount * DOGE_HASHRATE
+    return cryptoHeld
+}
 testHeader()
 
 $("#increment").on("click",function(event){
