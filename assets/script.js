@@ -68,15 +68,7 @@ function USDToCrypto(USD_CRYPTO_PRICE_API)
 
 USDToCrypto(USD_CRYPTO_PRICE_API)
 
-function testHeader() {
-    $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
-    $("<h1>").attr({"id":"cryptoPrice"}).appendTo("#headerContainer")
-    $("<h1>").attr({"id":"currentUSD"}).appendTo("#headerContainer")
-    $("<h2>").attr({"id":"currentCrypto"}).appendTo("#headerContainer")
-    $("<h1>").text("ClickHere").attr({"id":"clickHere"}).appendTo("#headerContainer")
-    $("<h1>").text("Calculate").attr({"id":"clickHere"}).appendTo("#headerContainer")
-}
-testHeader()
+
 
 $("#clickHere").on("click",function(){
     $("#currentCrypto").text(clickCount)   
@@ -96,3 +88,15 @@ $("#clickHere").on("click",function(){
     localStorage.setItem("USD-held",usdConversion)
     }
 console.log(localStorage)
+
+function testHeader() {
+    $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
+    $("<h1>").attr({"id":"cryptoPrice"}).appendTo("#headerContainer")
+    $("<h1>").text("Dollars Available: $"+usdConversion.toFixed(2)).attr({"id":"currentUSD"}).appendTo("#headerContainer")
+    $("<h2>").text("Doge Coins:"+cryptoHeld).attr({"id":"currentCrypto"}).appendTo("#headerContainer")
+    $("<h1>").text("ClickHere").attr({"id":"increment"}).appendTo("#headerContainer")
+    $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
+    $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
+}
+
+testHeader()
