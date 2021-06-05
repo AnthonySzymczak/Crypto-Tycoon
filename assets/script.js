@@ -1,21 +1,24 @@
 //DOGE - DOGE COIN BTC - BITCOIN ETH - ETHEREUM
+//CONSTANTS
 const API_KEY = "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444"
 const CURRENCIES = "USD"; 
 const DOGE_HASHRATE = .25
 const SAVED_VARIABLES = 2
 const CRYPTOCURRENCIES = "DOGE,ETH,BTC";
 const DECIMAL_POINTS = 2
+//JQUERY ID REFERENCES
 var strtbtn = $("#startGame")
 var strtPage= $("#crypto")
 var gamePage = $("#gamePage")
 var shopPage = $("#shopContainer")
+//API KEYS
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
 var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CURRENCIES}&tsyms=${CRYPTOCURRENCIES}&api_key=${API_KEY}`
-//used in cryptoToUSD function
+//VARIABLES FOR CONVERSION
 var usdConversion = 0
 var cryptoHeld = 0
 var clickCount=0
-
+//CHECKS IF LOCAL STORAGE POPULATED ELSE ZERO
 if(localStorage.length< SAVED_VARIABLES)
 {
     var usdConversion = 0
@@ -34,6 +37,8 @@ function loadGamePage() {
     gamePage.show()
     // shopPage.show()
 }
+//FETCH API THAT CONVERTS ON CLICK AND RETURNS SUM OF cryptoHeld + usdConversion
+//ALSO SHOWS AMOUNT CONVERTED ON CLICK AND CURRENT DOGE PRICE
 function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     fetch(CRYPTO_USD_PRICE_API).then(function (response) {
         return response.json()
@@ -47,11 +52,12 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
             + "\nYour Total is: $" + conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) + " Dollars")
     })
 }
+//LOAD STORE SECTION, LOADS AND STORES clickCount AND usdConversion
 function storeCurrency() {
     localStorage.setItem("crypto-held", clickCount)
     localStorage.setItem("USD-held", usdConversion)
 }
-function loadCurrency(clickCount, usdConversion) {
+function loadCurrency() {
     clickCount = loadClicks()
     usdConversion = loadUSDConversion()
     displayCurrentValues(clickCount, usdConversion)
@@ -65,6 +71,7 @@ function loadUSDConversion() {
     usdConversion = parseFloat(usdConversion)
     return usdConversion
 }
+//CONVERTS AND DISPLAYS UPDATED clickCount and usdConversion FROM LOCAL STORAGE
 function displayCurrentValues(clickCount, usdConversion) {
     console.log(clickCount,usdConversion)
     usdConversion = parseFloat(usdConversion)
@@ -72,6 +79,8 @@ function displayCurrentValues(clickCount, usdConversion) {
     cryptoHeld = convertDoge(clickCount)
     $("#currentCrypto").text("Doge Coins:"+cryptoHeld)
     }
+//TEST HEADER TO DISPLAY on.("click") FUNCTIONALITY, CAN BE DELETED ONCE GAME
+//PAGE HAS BEEN CREATED AND ID's CORRECTLY REFERENCED. 
 function testHeader() {
     $("<header>").attr({"id":"headerContainer"}).appendTo(document.body)
     $("<h1>").attr({"id":"cryptoPrice"}).appendTo("#headerContainer")
@@ -81,44 +90,53 @@ function testHeader() {
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
     $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
 }
-
+//UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount(){
     cryptoHeld = convertDoge(clickCount)
     if(cryptoHeld == NaN)
     cryptoHeld = 0
     $("#currentCrypto").text("Doge Coins:"+cryptoHeld)
 }
+//CLICKS CONVERTED TO HASHRATE PER CLICK
 function convertDoge(clickCount){
     cryptoHeld = clickCount * DOGE_HASHRATE
     return cryptoHeld
 }
+//CONVERTED AMOUNT
 function conversionAmount(currentPrice,cryptoHeld)
 {
     var convertedTo=cryptoHeld.toFixed(5) * currentPrice
     return convertedTo 
 }
+//CONVERTED AMOUNT + TOTALUSD
 function conversionTotal(currentPrice,cryptoHeld){
     usdConversion += conversionAmount(currentPrice,cryptoHeld)
     resetValues()
     return usdConversion
 }
+//RESETS VALUES OF CLICK AND CRYPTOHELD AFTER CONVERSION
 function resetValues() {
     clickCount = 0
     cryptoHeld = 0
     $("#currentCrypto").text(cryptoHeld)
 }
+
+//CALLS TEST HEADER, LOADS DATA FROM LOCALSTORAGE AND BUTTONS FOR TEST HEADER
 testHeader()
 loadCurrency(clickCount,usdConversion)
 
+//INCREMENTS CRYPTOHELD
 $("#increment").on("click",function(event){
     event.preventDefault()
     clickCount++
     updateCount(clickCount)
 });
+//CONVERTS CURRENT CRYPTOHELD TO USD
 $("#convert").on("click",function(event){
     event.preventDefault()
     cryptoToUSD(CRYPTO_USD_PRICE_API)
 });
+//SAVES usdConversion AND clickCount TO LOCAL STORAGE
 $("#save").on("click",function(event){
     event.preventDefault()
     storeCurrency(clickCount,usdConversion)
