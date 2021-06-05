@@ -100,3 +100,17 @@ function testHeader() {
 }
 
 testHeader()
+
+$("#increment").on("click",function(event){
+    event.preventDefault()
+    clickCount++
+    updateCount(clickCount)
+});
+$("#convert").on("click",function(event){
+    event.preventDefault()
+    cryptoToUSD(CRYPTO_USD_PRICE_API)
+});
+$("#save").on("click",function(event){
+    event.preventDefault()
+    storeCurrency(clickCount,usdConversion)
+});
