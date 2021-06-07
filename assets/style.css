@@ -62,6 +62,13 @@ marquee {
 marquee h3 {
     display:inline-flex;
 }
+#dogeTicker {
+    height: auto;
+    width: 25px;
+    vertical-align: middle;
+    border-radius: 5px;
+    margin: 5px;
+}
 .positiveChange {
     color:green;
 }

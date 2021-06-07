@@ -32,9 +32,8 @@ function loadGamePage() {
     // shopPage.show()
 }
 
-setInterval(function(){
-    cryptoTrends(CRYPTO_TREND_API)
-},15000)
+
+
 cryptoTrends(CRYPTO_TREND_API)
 function cryptoTrends(CRYPTO_TREND_API){
     fetch(CRYPTO_TREND_API).then(function(response){
@@ -43,7 +42,6 @@ function cryptoTrends(CRYPTO_TREND_API){
         console.log(data)
         change15min = data.quotes.USD.percent_change_15m
         $("#innerMarquee").text(change15min + "%")
-        console.log(change15min)
         if(change15min > 0)
         {
             $("#innerMarquee").removeClass("negativeChange neutralChange").addClass("positiveChange")
@@ -152,7 +150,9 @@ if(localStorage.length< SAVED_VARIABLES)
  
 }
 testHeader()
-
+setInterval(function(){
+    cryptoTrends(CRYPTO_TREND_API)
+},15000)
 //INCREMENTS CRYPTOHELD
 $("#increment").on("click",function(event){
     event.preventDefault()
