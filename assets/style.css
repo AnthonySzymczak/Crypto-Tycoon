@@ -53,6 +53,14 @@ html {
 marquee {
     font-size: large;
     color: rgb(255, 188, 4);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+marquee h3 {
+    display:inline-flex;
 }
 .positiveChange {
     color:green;
