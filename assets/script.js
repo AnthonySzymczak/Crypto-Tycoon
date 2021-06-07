@@ -20,15 +20,6 @@ var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fs
 var usdConversion = 0
 var cryptoHeld = 0
 var clickCount=0
-//CHECKS IF LOCAL STORAGE POPULATED ELSE ZERO
-if(localStorage.length< SAVED_VARIABLES)
-{
-    var usdConversion = 0
-    var clickCount=0
-} else {
-    usdConversion = loadUSDConversion()
-    clickCount = loadClicks()
-}
 
 gamePage.hide()
 shopPage.hide()
@@ -125,8 +116,18 @@ function resetValues() {
 }
 
 //CALLS TEST HEADER, LOADS DATA FROM LOCALSTORAGE AND BUTTONS FOR TEST HEADER
+//CHECKS IF LOCAL STORAGE POPULATED ELSE ZERO
+if(localStorage.length< SAVED_VARIABLES)
+{
+    var usdConversion = 0
+    var clickCount=0
+
+} else {
+    console.log(clickCount,usdConversion)
+    loadCurrency(clickCount,usdConversion)
+ 
+}
 testHeader()
-loadCurrency(clickCount,usdConversion)
 
 //INCREMENTS CRYPTOHELD
 $("#increment").on("click",function(event){
