@@ -4,7 +4,8 @@ const API_KEY = "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a344
 const CURRENCIES = "USD"; 
 const DOGE_HASHRATE = .25
 const SAVED_VARIABLES = 2
-const CRYPTOCURRENCIES = "DOGE,ETH,BTC";
+const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
+const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin"
 const DECIMAL_POINTS = 2
 //JQUERY ID REFERENCES
 var strtbtn = $("#startGame")
@@ -13,8 +14,8 @@ var gamePage = $("#gamePage")
 var shopPage = $("#shopContainer")
 
 //API KEYS
-var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
-var USD_CRYPTO_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CURRENCIES}&tsyms=${CRYPTOCURRENCIES}&api_key=${API_KEY}`
+var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES_CONVERSION.split(",")[0]}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
+var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIES_TREND.split(",")[0]}/`
 //VARIABLES FOR CONVERSION
 
 var usdConversion = 0
@@ -29,6 +30,20 @@ function loadGamePage() {
     strtPage.hide()
     gamePage.show()
     // shopPage.show()
+}
+
+setInterval(function(){
+    cryptoTrends(CRYPTO_TREND_API)
+},15000)
+cryptoTrends(CRYPTO_TREND_API)
+function cryptoTrends(CRYPTO_TREND_API){
+    fetch(CRYPTO_TREND_API).then(function(response){
+        return response.json()
+    }).then(function (data) {
+        console.log(data)
+        change15min = data.quotes.USD.percent_change_15m
+        $("#marquee").text(change15min)
+    })
 }
 //FETCH API THAT CONVERTS ON CLICK AND RETURNS SUM OF cryptoHeld + usdConversion
 //ALSO SHOWS AMOUNT CONVERTED ON CLICK AND CURRENT DOGE PRICE
