@@ -61,6 +61,8 @@ marquee {
 }
 marquee h3 {
     display:inline-flex;
+    margin-left: 5px;
+    margin-right:10px;
 }
 #dogeTicker {
     height: auto;

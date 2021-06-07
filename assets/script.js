@@ -40,17 +40,39 @@ function cryptoTrends(CRYPTO_TREND_API){
         return response.json()
     }).then(function (data) {
         console.log(data)
-        change15min = data.quotes.USD.percent_change_15m
-        $("#innerMarquee").text(change15min + "%")
-        if(change15min > 0)
-        {
-            $("#innerMarquee").removeClass("negativeChange neutralChange").addClass("positiveChange")
-        } else if(change15min< 0) {
-            $("#innerMarquee").removeClass("positiveChange neutralChange").addClass("negativeChange")
-        } else {
-            $("#innerMarquee").removeClass("positiveChange negativeChange").addClass("neutralChange")
-        }
+        const {percent_change_15m,percent_change_1h,percent_change_24h} = data.quotes.USD
+        dogeTicker({percent_change_15m,percent_change_1h,percent_change_24h})
     })
+}
+function dogeTicker(data) {
+    $("#innerMarquee15m").text(data.percent_change_15m + "%")
+    $("#innerMarquee1h").text(data.percent_change_1h + "%")
+    $("#innerMarquee1d").text(data.percent_change_24h + "%")
+        if(data.percent_change_15m > 0)
+        {
+            $("#innerMarquee15m").removeClass("negativeChange neutralChange").addClass("positiveChange")
+        } else if(data.percent_change_15m < 0) {
+            $("#innerMarquee15m").removeClass("positiveChange neutralChange").addClass("negativeChange")
+        } else {
+            $("#innerMarquee15m").removeClass("positiveChange negativeChange").addClass("neutralChange")
+        }
+        if(data.percent_change_1h > 0)
+        {
+            $("#innerMarquee1h").removeClass("negativeChange neutralChange").addClass("positiveChange")
+        } else if(data.percent_change_15m < 0) {
+            $("#innerMarquee1h").removeClass("positiveChange neutralChange").addClass("negativeChange")
+        } else {
+            $("#innerMarquee1h").removeClass("positiveChange negativeChange").addClass("neutralChange")
+        }
+        if(data.percent_change_24h > 0)
+        {
+            $("#innerMarquee1d").removeClass("negativeChange neutralChange").addClass("positiveChange")
+        } else if(data.percent_change_24h < 0) {
+            $("#innerMarquee1d").removeClass("positiveChange neutralChange").addClass("negativeChange")
+        } else {
+            $("#innerMarquee1d").removeClass("positiveChange negativeChange").addClass("neutralChange")
+        }
+        
 }
 //FETCH API THAT CONVERTS ON CLICK AND RETURNS SUM OF cryptoHeld + usdConversion
 //ALSO SHOWS AMOUNT CONVERTED ON CLICK AND CURRENT DOGE PRICE
