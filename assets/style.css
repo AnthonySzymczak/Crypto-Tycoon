@@ -50,3 +50,16 @@ html {
   -o-background-size: cover;
   background-size: cover;
 } 
+marquee {
+    font-size: large;
+    color: rgb(255, 188, 4);
+}
+.positiveChange {
+    color:green;
+}
+.negativeChange {
+    color:red;
+}
+.neutralChange {
+    color:gray;
+}

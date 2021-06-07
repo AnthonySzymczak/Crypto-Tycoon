@@ -42,7 +42,16 @@ function cryptoTrends(CRYPTO_TREND_API){
     }).then(function (data) {
         console.log(data)
         change15min = data.quotes.USD.percent_change_15m
-        $("#marquee").text(change15min)
+        $("#innerMarquee").text(change15min + "%")
+        console.log(change15min)
+        if(change15min > 0)
+        {
+            $("#innerMarquee").removeClass("negativeChange neutralChange").addClass("positiveChange")
+        } else if(change15min< 0) {
+            $("#innerMarquee").removeClass("positiveChange neutralChange").addClass("negativeChange")
+        } else {
+            $("#innerMarquee").removeClass("positiveChange negativeChange").addClass("neutralChange")
+        }
     })
 }
 //FETCH API THAT CONVERTS ON CLICK AND RETURNS SUM OF cryptoHeld + usdConversion
