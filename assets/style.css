@@ -50,7 +50,7 @@ html {
   -o-background-size: cover;
   background-size: cover;
 } 
-marquee {
+#marquee1 {
     font-size: large;
     color: rgb(255, 188, 4);
     display: flex;
@@ -59,7 +59,7 @@ marquee {
     align-content: center;
     align-items: center;
 }
-marquee h3 {
+#marquee1 h3 {
     display:inline-flex;
     margin-left: 5px;
     margin-right:10px;

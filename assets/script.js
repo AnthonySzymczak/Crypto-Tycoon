@@ -34,7 +34,6 @@ function loadGamePage() {
 
 
 
-cryptoTrends(CRYPTO_TREND_API)
 function cryptoTrends(CRYPTO_TREND_API){
     fetch(CRYPTO_TREND_API).then(function(response){
         return response.json()
@@ -59,7 +58,7 @@ function dogeTicker(data) {
         if(data.percent_change_1h > 0)
         {
             $("#innerMarquee1h").removeClass("negativeChange neutralChange").addClass("positiveChange")
-        } else if(data.percent_change_15m < 0) {
+        } else if(data.percent_change_1h < 0) {
             $("#innerMarquee1h").removeClass("positiveChange neutralChange").addClass("negativeChange")
         } else {
             $("#innerMarquee1h").removeClass("positiveChange negativeChange").addClass("neutralChange")
@@ -128,6 +127,24 @@ function testHeader() {
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
     $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
 }
+function twitterFeed(){
+    $("<div>").attr({"id":"twitterContainer", "class":"card"}).appendTo("#marquee2")
+    $("<header>").attr({"id":"twitterHeader","class":"card-header"}).appendTo("#twitterContainer")
+    $("<img>").attr({"id":"twitterHeaderIcon","class":"card-header-icon", "src":"http://pbs.twimg.com/profile_images/1389265488836890624/8u5wEQ9Z_normal.png"}).appendTo("#twitterHeader")
+    $("<p>").text("twitterName").attr({"id":"twitterHeaderTitle","class":"card-header-title"}).appendTo("#twitterHeader")
+    $("<div>").attr({"id":"twitterContentContainer", "class":"card-content"}).appendTo("#twitterContainer")
+    $("<p>").text("just gonna leave this right here ... ").attr({"id":"twitterContent","class":"content"}).appendTo("#twitterContentContainer")
+    twitterMedia()
+    $("<footer>").attr({"id":"twitterFooterContainer","class":"card-footer"}).appendTo("#twitterContainer")
+    $("<p>").text("Retweets:" + " 13000").attr({"id":"twitterRT", "class":"card-footer-item"}).appendTo("#twitterFooterContainer")
+    $("<p>").text("Likes:" + " 0").attr({"id":"twitterFooterLikes","class":"card-footer-item"}).appendTo("#twitterFooterContainer")
+  
+    
+}
+function twitterMedia(){
+    $("<video>").attr({"id":"twitterVideo", "class":"card-image", "src":"https://video.twimg.com/tweet_video/E2-xIxeVUAMRCDx.mp4"}).appendTo("#twitterContentContainer")
+    $("<img>").attr({"id":"twitterImage", "class":"card-image", "src":""}).appendTo("#twitterContainer")
+}
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount(){
     cryptoHeld = convertDoge(clickCount)
@@ -172,9 +189,11 @@ if(localStorage.length< SAVED_VARIABLES)
  
 }
 testHeader()
-setInterval(function(){
-    cryptoTrends(CRYPTO_TREND_API)
-},15000)
+twitterFeed()
+cryptoTrends(CRYPTO_TREND_API)
+// setInterval(function(){
+//     cryptoTrends(CRYPTO_TREND_API)
+// },15000)
 //INCREMENTS CRYPTOHELD
 $("#increment").on("click",function(event){
     event.preventDefault()
