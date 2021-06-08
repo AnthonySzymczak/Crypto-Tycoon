@@ -14,12 +14,12 @@ var gamePage = $("#gamePage");
 var shopPage = $("#shopContainer");
 var strtPage = $("#crypto");
 var header = $("#headerContainer");
-var howtoPlayPage = $("howToPlaypge");
+var howtoPlayPage = $("#howToPlaypge");
 //JQUERY ID REFERENCES BTNS
 var strtbtn = $("#startGame");
 var shopBtn = $("#shopbtn");
 var homeBtn = $("#homeBtn");
-var HTPbtn = $("HTPbtn");
+var HTPbtn = $("#HTPbtn");
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
@@ -45,6 +45,7 @@ howtoPlayPage.hide();
 strtbtn.click(loadGamePage);
 function loadGamePage() {
   strtPage.hide();
+  console.log("bryh")
   gamePage.show();
   shopPage.hide();
   howtoPlayPage.hide();
@@ -53,27 +54,11 @@ function loadGamePage() {
 homeBtn.click(loadHomePage);
 function loadHomePage() {
   strtPage.show();
+  console.log("bryh")
+
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
-  header.hide();
-}
-// from nav bar on click loads shop
-shopBtn.click(loadShopPage);
-function loadShopPage() {
-  shopPage.show();
-  gamePage.hide();
-  strtPage.hide();
-  header.hide();
-  howtoPlayPage.hide();
-}
-//nav bar on click loads HTP page
-HTPbtn.click(loadHTPpge);
-function loadHTPpge() {
-  howtoPlayPage.show();
-  shopPage.show();
-  gamePage.hide();
-  strtPage.hide();
   header.hide();
 }
 
@@ -386,3 +371,22 @@ $("#save").on("click", function (event) {
   event.preventDefault();
   storeCurrency(clickCount, usdConversion);
 });
+// from nav bar on click loads shop
+shopBtn.click(loadShopPage);
+function loadShopPage() {
+  shopPage.show();
+  gamePage.hide();
+  strtPage.hide();
+  header.hide();
+  howtoPlayPage.hide();
+}
+//nav bar on click loads HTP page
+HTPbtn.click(loadHTPpge);
+function loadHTPpge() {
+  howtoPlayPage.show();
+  shopPage.hide();
+  gamePage.hide();
+  strtPage.hide();
+  header.hide();
+  console.log("bryh")
+}
