@@ -34,9 +34,9 @@ function get(){
 get();
 */
 
-//
+//-----------------------------------------------
 //  VIDEO CARDS
-//
+//-----------------------------------------------
 
 let elem1 = document.getElementById('1');
 elem1.value = 125;
@@ -62,9 +62,10 @@ let elem6 = document.getElementById('6');
 elem6.value = 5000;
 elem6.addEventListener('click', subtractUSD);
 
-//
+//------------------------------------------------
 //  PROCESSORS
-//
+//------------------------------------------------
+
 let elem7 = document.getElementById('7');
 elem7.value = 200;
 elem7.addEventListener('click', subtractUSD);
@@ -89,9 +90,10 @@ let elem12 = document.getElementById('12');
 elem12.value = 5000;
 elem12.addEventListener('click', subtractUSD);
 
-//
+//--------------------------------------------------
 //  MOTHER BOARDS
-//
+//--------------------------------------------------
+
 let elem13 = document.getElementById('13');
 elem13.value = 150;
 elem13.addEventListener('click', subtractUSD);
