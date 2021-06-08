@@ -7,6 +7,7 @@ const SAVED_VARIABLES = 2
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin"
 const DECIMAL_POINTS = 2
+const TWEETS = 3;
 //JQUERY ID REFERENCES
 var strtbtn = $("#startGame")
 var strtPage= $("#crypto")
@@ -16,6 +17,7 @@ var shopPage = $("#shopContainer")
 //API KEYS
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES_CONVERSION.split(",")[0]}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
 var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIES_TREND.split(",")[0]}/`
+var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIES_TREND.split(",")[0]}/twitter`
 //VARIABLES FOR CONVERSION
 
 var usdConversion = 0
@@ -32,8 +34,19 @@ function loadGamePage() {
     // shopPage.show()
 }
 
-
-
+cryptoTwitter(CRYPTO_TWITTER_API)
+function cryptoTwitter(CRYPTO_TWITTER_API){
+    fetch(CRYPTO_TWITTER_API).then(function(response){
+        return response.json()
+    }).then(function(data){
+        console.log(data)
+        for(var i = 0;i<TWEETS;i++){
+        const {date,like_count,media_link,retweet_count,status,user_image_link,user_name} = data[i]
+        console.log( date,like_count,media_link,retweet_count,status,user_image_link,user_name)
+        twitterFeed(i,{date,like_count,media_link,retweet_count,status,user_image_link,user_name})
+        }
+    })
+}
 function cryptoTrends(CRYPTO_TREND_API){
     fetch(CRYPTO_TREND_API).then(function(response){
         return response.json()
@@ -127,17 +140,18 @@ function testHeader() {
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
     $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
 }
-function twitterFeed(){
-    $("<div>").attr({"id":"twitterContainer", "class":"card"}).appendTo("#marquee2")
-    $("<header>").attr({"id":"twitterHeader","class":"card-header"}).appendTo("#twitterContainer")
-    $("<img>").attr({"id":"twitterHeaderIcon","class":"card-header-icon", "src":"http://pbs.twimg.com/profile_images/1389265488836890624/8u5wEQ9Z_normal.png"}).appendTo("#twitterHeader")
-    $("<p>").text("twitterName").attr({"id":"twitterHeaderTitle","class":"card-header-title"}).appendTo("#twitterHeader")
-    $("<div>").attr({"id":"twitterContentContainer", "class":"card-content"}).appendTo("#twitterContainer")
-    $("<p>").text("just gonna leave this right here ... ").attr({"id":"twitterContent","class":"content"}).appendTo("#twitterContentContainer")
-    twitterMedia()
-    $("<footer>").attr({"id":"twitterFooterContainer","class":"card-footer"}).appendTo("#twitterContainer")
-    $("<p>").text("Retweets:" + " 13000").attr({"id":"twitterRT", "class":"card-footer-item"}).appendTo("#twitterFooterContainer")
-    $("<p>").text("Likes:" + " 0").attr({"id":"twitterFooterLikes","class":"card-footer-item"}).appendTo("#twitterFooterContainer")
+function twitterFeed(i,data){
+    console.log(data)
+    $("<div>").attr({"id":"twitterContainer"+i, "class":"card"}).appendTo("#marquee2")
+    $("<header>").attr({"id":"twitterHeader"+i,"class":"card-header"}).appendTo("#twitterContainer"+i)
+    $("<img>").attr({"id":"twitterHeaderIcon"+i,"class":"card-header-icon", "src": data.user_image_link}).appendTo("#twitterHeader"+i)
+    $("<p>").text(data.user_name).attr({"id":"twitterHeaderTitle"+i,"class":"card-header-title"}).appendTo("#twitterHeader"+i)
+    $("<div>").attr({"id":"twitterContentContainer"+i, "class":"card-content"}).appendTo("#twitterContainer"+i)
+    $("<p>").text(data.status).attr({"id":"twitterContent"+i,"class":"content"}).appendTo("#twitterContentContainer"+i)
+    $("<footer>").attr({"id":"twitterFooterContainer"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)
+    $("<p>").text("Retweets:" + data.retweet_count).attr({"id":"twitterRT"+i, "class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
+    $("<p>").text("Likes:" + data.like_count).attr({"id":"twitterFooterLikes"+i,"class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
+    $("<p>").text(data.date).attr({"id":"twitterFooterDate"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)
   
     
 }
