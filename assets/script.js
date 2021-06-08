@@ -10,28 +10,48 @@ const DECIMAL_POINTS = 2
 const TWEETS = 3;
 //JQUERY ID REFERENCES
 var strtbtn = $("#startGame")
-var strtPage= $("#crypto")
+var strtPage = $("#crypto")
 var gamePage = $("#gamePage")
 var shopPage = $("#shopContainer")
+var homeBtn = $("#homeBtn")
+var header = $("#headerContainer")
+var shopBtn = $("#shopbtn")
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES_CONVERSION.split(",")[0]}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
 var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIES_TREND.split(",")[0]}/`
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIES_TREND.split(",")[0]}/twitter`
-//VARIABLES FOR CONVERSION
 
+//VARIABLES FOR CONVERSION
 var usdConversion = 0
 var cryptoHeld = 0
 var clickCount=0
 
+//on load displays homepage and hides other pages
 gamePage.hide()
 shopPage.hide()
+header.hide()
 strtbtn.click(loadGamePage)
 
 function loadGamePage() {
     strtPage.hide()
     gamePage.show()
-    // shopPage.show()
+    shopPage.hide()
+}
+//from nav bar on click loads homepage
+homeBtn.click(loadHomePage)
+function loadHomePage(){
+    strtPage.show()
+    gamePage.hide()
+    shopPage.hide()
+}
+
+shopBtn.click(loadShopPage)
+function loadShopPage(){
+shopPage.show()
+gamePage.hide()
+strtPage.hide()
+header.hide()
 }
 
 function cryptoTwitter(CRYPTO_TWITTER_API){
@@ -39,7 +59,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API){
         return response.json()
     }).then(function(data){
         console.log(data)
-        for(var i = 0;i<TWEETS;i++){
+        for(var i = 0; i<TWEETS; i++){
         const {date,like_count,media_link,retweet_count,status,user_image_link,user_name} = data[i]
         console.log( date,like_count,media_link,retweet_count,status,user_image_link,user_name)
         twitterFeed(i,{date,like_count,media_link,retweet_count,status,user_image_link,user_name})
