@@ -82,6 +82,10 @@ html {
 }
 .column {
     column-count: 4;
+    padding: 0px;
+}
+#marquee2 .card {
+    margin-bottom: 20px;
 }
 #twitterContainer {
     font-size: 1.5vw;

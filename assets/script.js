@@ -14,7 +14,7 @@ var strtPage= $("#crypto")
 var gamePage = $("#gamePage")
 var shopPage = $("#shopContainer")
 
-//API KEYS
+//API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${CRYPTOCURRENCIES_CONVERSION.split(",")[0]}&tsyms=${CURRENCIES}&api_key=${API_KEY}`
 var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIES_TREND.split(",")[0]}/`
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIES_TREND.split(",")[0]}/twitter`
@@ -34,7 +34,6 @@ function loadGamePage() {
     // shopPage.show()
 }
 
-cryptoTwitter(CRYPTO_TWITTER_API)
 function cryptoTwitter(CRYPTO_TWITTER_API){
     fetch(CRYPTO_TWITTER_API).then(function(response){
         return response.json()
@@ -148,15 +147,14 @@ function twitterFeed(i,data){
     $("<p>").text(data.user_name).attr({"id":"twitterHeaderTitle"+i,"class":"card-header-title"}).appendTo("#twitterHeader"+i)
     $("<div>").attr({"id":"twitterContentContainer"+i, "class":"card-content"}).appendTo("#twitterContainer"+i)
     $("<p>").text(data.status).attr({"id":"twitterContent"+i,"class":"content"}).appendTo("#twitterContentContainer"+i)
+    twitterMedia(i, data)
     $("<footer>").attr({"id":"twitterFooterContainer"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)
     $("<p>").text("Retweets:" + data.retweet_count).attr({"id":"twitterRT"+i, "class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
     $("<p>").text("Likes:" + data.like_count).attr({"id":"twitterFooterLikes"+i,"class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
-    $("<p>").text(data.date).attr({"id":"twitterFooterDate"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)
-  
-    
+    $("<p>").text(data.date).attr({"id":"twitterFooterDate"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)   
 }
-function twitterMedia(){
-    $("<video>").attr({"id":"twitterVideo", "class":"card-image", "src":"https://video.twimg.com/tweet_video/E2-xIxeVUAMRCDx.mp4"}).appendTo("#twitterContentContainer")
+function twitterMedia(i){
+    $("<video>").attr({"id":"twitterVideo", "class":"card-image", "src":"https://video.twimg.com/tweet_video/E2-xIxeVUAMRCDx.mp4"}).appendTo("#twitterContentContainer"+i)
     $("<img>").attr({"id":"twitterImage", "class":"card-image", "src":""}).appendTo("#twitterContainer")
 }
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
@@ -203,8 +201,9 @@ if(localStorage.length< SAVED_VARIABLES)
  
 }
 testHeader()
-twitterFeed()
+cryptoTwitter(CRYPTO_TWITTER_API)
 cryptoTrends(CRYPTO_TREND_API)
+
 // setInterval(function(){
 //     cryptoTrends(CRYPTO_TREND_API)
 // },15000)
