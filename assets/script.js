@@ -36,6 +36,7 @@ var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
 
+
 //on load displays homepage and hides other pages
 gamePage.hide();
 shopPage.hide();
@@ -56,6 +57,7 @@ function loadHomePage() {
   strtPage.show();
   console.log("bryh")
 
+
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
@@ -66,6 +68,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
   fetch(CRYPTO_TWITTER_API)
     .then(function (response) {
       return response.json();
+
     })
     .then(function (data) {
       console.log(data);
@@ -309,6 +312,7 @@ function twitterMedia(i, data, isVideo) {
       .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
       .appendTo("#twitterContentContainer" + i);
   }
+
 }
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount() {
@@ -345,8 +349,10 @@ if (localStorage.length < SAVED_VARIABLES) {
   var usdConversion = 0;
   var clickCount = 0;
 } else {
+
   console.log(clickCount, usdConversion);
   loadCurrency(clickCount, usdConversion);
+
 }
 testHeader();
 cryptoTwitter(CRYPTO_TWITTER_API);
@@ -367,6 +373,7 @@ $("#convert").on("click", function (event) {
   cryptoToUSD(CRYPTO_USD_PRICE_API);
 });
 //SAVES usdConversion AND clickCount TO LOCAL STORAGE
+
 $("#save").on("click", function (event) {
   event.preventDefault();
   storeCurrency(clickCount, usdConversion);
