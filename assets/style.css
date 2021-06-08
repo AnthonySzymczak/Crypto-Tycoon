@@ -110,4 +110,8 @@ html {
 .dogedude{
     width: 400px;
     height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
