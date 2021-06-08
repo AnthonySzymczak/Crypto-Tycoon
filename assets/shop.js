@@ -37,38 +37,70 @@ get();
 //
 //  VIDEO CARDS
 //
-let usdConversion = [];
-document.getElementById('v1').append.val='125';
-document.getElementById('2').append.val='300';
-document.getElementById('3').append.val='650';
-document.getElementById('4').append.val='1300';
-document.getElementById('5').append.val='2600';
-document.getElementById('6').append.val='5000';
+//_____________________________________________________________________________________
+//tony's play area
+
+let elem1 = document.getElementById('1');
+elem1.value = 125;
+elem1.addEventListener('click', subtractUSD);
+
+let elem2 = document.getElementById('2');
+elem2.value = 300;
+elem2.addEventListener('click', subtractUSD);
+
+let elem3 = document.getElementById('3');
+elem3.value = 650;
+elem3.addEventListener('click', subtractUSD);
+
+let elem4 = document.getElementById('4');
+elem4.value = 1300;
+elem4.addEventListener('click', subtractUSD);
+
+let elem5 = document.getElementById('5');
+elem5.value = 2600;
+elem5.addEventListener('click', subtractUSD);
+
+let elem6 = document.getElementById('6');
+elem6.value = 5000;
+elem6.addEventListener('click', subtractUSD);
+
 //
 //  PROCESSORS
 //
-document.getElementById('7').append.val='200';
-document.getElementById('8').append.val='300';
-document.getElementById('9').append.val='400';
-document.getElementById('10').append.val='800';
-document.getElementById('11').append.val='1500';
-document.getElementById('12').append.val='5000';
+let elem7 = document.getElementById('7');
+elem7.value = 200;
+elem7.addEventListener('click', subtractUSD);
+
+let elem8 = document.getElementById('8').append.val=300;
+
+let elem9 = document.getElementById('9').append.val=400;
+
+let elem10 = document.getElementById('10').append.val=800;
+
+let elem11 = document.getElementById('11').append.val=1500;
+
+let elem12 = document.getElementById('12').append.val=5000;
+
 //
 //  MOTHER BOARDS
 //
-document.getElementById('13').append.val='150';
-document.getElementById('14').append.val='250';
-document.getElementById('15').append.val='350';
-document.getElementById('16').append.val='700';
-document.getElementById('17').append.val='2000';
-document.getElementById('18').append.val='5000';
+let elem13 = document.getElementById('13').append.val=150;
+
+let elem14 = document.getElementById('14').append.val=250;
+
+let elem15 = document.getElementById('15').append.val=350;
+
+let elem16 = document.getElementById('16').append.val=700;
+
+let elem17 = document.getElementById('17').append.val=2000;
+
+let elem18 = document.getElementById('18').append.val=5000;
 
 
-/*
-<button onclick="subtractUSD()"></button>
+
 function subtractUSD() {
+    console.log('subtractUSD');        
     for (i = usdConversion; 1 <= 18; val--) {
-        
     }
 }
-*/
+
