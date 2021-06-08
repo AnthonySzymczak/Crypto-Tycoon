@@ -1,5 +1,5 @@
 /* In this .js file you will see an interactive shop user interface 
-    you will notice a clean interface with many purchaseable upgrades */
+    you will notice many purchaseable upgrades */
 
 //-----------------------------------------------
 //  VIDEO CARDS
@@ -86,14 +86,22 @@ let elem18 = document.getElementById("18");
 elem18.dataset.dollar = 5000;
 elem18.addEventListener("click", subtractUSD);
 
-
-
 function subtractUSD(event) {
-    var elem = event.target 
-    let dollar = parseFloat(elem.dataset.dollar);
-  console.log(usdConversion - dollar);
+    localStorage.getItem("USD-held");
+    console.log(usdConversion);
+  var elem = event.target;
+  let dollar = parseFloat(elem.dataset.dollar);
 
+  
+  if (usdConversion < elem) {
+      // You cannot purchase this upgrade, you do not have enough money!;
+      console.log("not enough moolah baaaybay");
+      return;
+    } 
+    else{
+        usdConversion - dollar;
+        localStorage.setItem("USD-held",usdConversion);
+    }
   // needs to save to local storage,
   //if you want to do it again, it needs to pull from local storage.
 }
-
