@@ -20,9 +20,11 @@ var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIE
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIES_TREND.split(",")[0]}/twitter`
 //VARIABLES FOR CONVERSION
 
+
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
+
 
 gamePage.hide()
 shopPage.hide()
@@ -41,8 +43,22 @@ function cryptoTwitter(CRYPTO_TWITTER_API){
         console.log(data)
         for(var i = 0;i<TWEETS;i++){
         const {date,like_count,media_link,retweet_count,status,user_image_link,user_name} = data[i]
+
+        var splitMedia = media_link.split("/")
+        if(splitMedia.indexOf("media") == -1){
+            var isVideo = 1
+        } else 
+        {
+            isVideo = 0
+        }
         console.log( date,like_count,media_link,retweet_count,status,user_image_link,user_name)
-        twitterFeed(i,{date,like_count,media_link,retweet_count,status,user_image_link,user_name})
+        var conversionDate = new Date(date)
+        console.log(date)
+        console.log(conversionDate)
+        conversionDate = conversionDate.toLocaleDateString("en-US")
+        console.log(conversionDate)
+        twitterFeed(i,{conversionDate,like_count,media_link,retweet_count,status,user_image_link,user_name},isVideo)
+
         }
     })
 }
@@ -139,23 +155,35 @@ function testHeader() {
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
     $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
 }
-function twitterFeed(i,data){
+
+function twitterFeed(i,data,isVideo){
     console.log(data)
+    console.log(isVideo)
+    console.log(data.media_link)
+
     $("<div>").attr({"id":"twitterContainer"+i, "class":"card"}).appendTo("#marquee2")
     $("<header>").attr({"id":"twitterHeader"+i,"class":"card-header"}).appendTo("#twitterContainer"+i)
     $("<img>").attr({"id":"twitterHeaderIcon"+i,"class":"card-header-icon", "src": data.user_image_link}).appendTo("#twitterHeader"+i)
     $("<p>").text(data.user_name).attr({"id":"twitterHeaderTitle"+i,"class":"card-header-title"}).appendTo("#twitterHeader"+i)
     $("<div>").attr({"id":"twitterContentContainer"+i, "class":"card-content"}).appendTo("#twitterContainer"+i)
     $("<p>").text(data.status).attr({"id":"twitterContent"+i,"class":"content"}).appendTo("#twitterContentContainer"+i)
-    twitterMedia(i, data)
+
+    twitterMedia(i,data, isVideo)
     $("<footer>").attr({"id":"twitterFooterContainer"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)
     $("<p>").text("Retweets:" + data.retweet_count).attr({"id":"twitterRT"+i, "class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
     $("<p>").text("Likes:" + data.like_count).attr({"id":"twitterFooterLikes"+i,"class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
-    $("<p>").text(data.date).attr({"id":"twitterFooterDate"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)   
+    $("<p>").text(data.conversionDate).attr({"id":"twitterFooterDate"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)   
 }
-function twitterMedia(i){
-    $("<video>").attr({"id":"twitterVideo", "class":"card-image", "src":"https://video.twimg.com/tweet_video/E2-xIxeVUAMRCDx.mp4"}).appendTo("#twitterContentContainer"+i)
-    $("<img>").attr({"id":"twitterImage", "class":"card-image", "src":""}).appendTo("#twitterContainer")
+function twitterMedia(i,data,isVideo){
+    console.log(isVideo,data.media_link)
+    if(isVideo == 1){
+    $("<img>").remove()    
+    $("<video>").attr({"id":"twitterVideo", "class":"card-image", "src":data.media_link}).appendTo("#twitterContentContainer"+i)
+    } else if(isVideo == 0){
+    $("<video>").remove()    
+    $("<img>").attr({"id":"twitterImage", "class":"card-image", "src":data.media_link}).appendTo("#twitterContentContainer"+i)
+    }
+
 }
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount(){
@@ -198,7 +226,7 @@ if(localStorage.length< SAVED_VARIABLES)
 } else {
     console.log(clickCount,usdConversion)
     loadCurrency(clickCount,usdConversion)
- 
+
 }
 testHeader()
 cryptoTwitter(CRYPTO_TWITTER_API)
