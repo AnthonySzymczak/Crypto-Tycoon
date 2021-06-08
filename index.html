@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,47 +8,49 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Crypto-Tycoon</title>
-    
+
 </head>
+
 <body>
-    <marquee id = "marquee1" direction="left">
-        <img id ="dogeTicker" src = "./assets/images/Dogecoin-ticker.jpg"/>
+    <marquee id="marquee1" direction="left">
+        <img id="dogeTicker" src="./assets/images/Dogecoin-ticker.jpg" />
         Price Changes - 15 Minutes:
-        <h3 id = "innerMarquee15m"></h3>
+        <h3 id="innerMarquee15m"></h3>
         1 Hour:
-        <h3 id = "innerMarquee1h"></h3>
+        <h3 id="innerMarquee1h"></h3>
         1 Day:
-        <h3 id = "innerMarquee1d"></h3>
-        <img id ="dogeTicker" src = "./assets/images/Dogecoin-ticker.jpg"/>
+        <h3 id="innerMarquee1d"></h3>
+        <img id="dogeTicker" src="./assets/images/Dogecoin-ticker.jpg" />
     </marquee>
     <div class="hero">
         <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
                 </a>
-                
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            
+
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item">
                         Home
                     </a>
-                    
+
                     <a class="navbar-item">
                         How to Play
                     </a>
-                    
+
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
                             Shop
                         </a>
-                        
+
                         <div class="navbar-dropdown">
                             <a class="navbar-item">
                                 About
@@ -62,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
@@ -72,54 +75,55 @@
             </div>
         </nav>
         <h1>Crypto-Tycoon</h1>
-        
+
         <div class="container" id="crypto">
             <div class="center">
                 <video width="420" height="320" controls>
                     <source src="assets\Untitled.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                  </video>
-                  </div>
-                  <button class="begin" id="startGame">Start Game</button>
-    
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <button class="begin" id="startGame">Start Game</button>
+
         </div>
         <div id="shopContainer">
-        <h1>WELCOME TO COMPUTER PLUS!</h1>
-        <h2>VIDEO CARDS</h2>
-        <div id="container1" class="column">
-            <p id="1"><a class="button">Asus gt 1030 2gb:     $125</a></p>
-            <p id="2"><a class="button">Asus GTX 1050Ti :     $300</a></p>
-            <p id="3"><a class="button">Asus RTX 2060   :     $650</a></p>
-            <p id="4"><a class="button">Asus 6700 XT:         $1300</a></p>
-            <p id="5"><a class="button">Saphire RX 6900:      $2600</a></p>
-            <p id="6"><a class="button">NVIDIA RTX 3080Ti:    $5000</a></p>
+            <h1>WELCOME TO COMPUTER PLUS!</h1>
+            <h2>VIDEO CARDS</h2>
+            <div id="container1" class="column">
+                <p id="1"><a class="button">Asus gt 1030 2gb: $125</a></p>
+                <p id="2"><a class="button">Asus GTX 1050Ti : $300</a></p>
+                <p id="3"><a class="button">Asus RTX 2060 : $650</a></p>
+                <p id="4"><a class="button">Asus 6700 XT: $1300</a></p>
+                <p id="5"><a class="button">Saphire RX 6900: $2600</a></p>
+                <p id="6"><a class="button">NVIDIA RTX 3080Ti: $5000</a></p>
+            </div>
+            <h2>PROCESSORS</h2>
+            <div id="container2" class="column">
+                <p id="7"><a class="button">AMD ryzen 3: $200</a></p>
+                <p id="8"><a class="button">AMD ryzen 5: $300</a></p>
+                <p id="9"><a class="button">AMD ryzen 7: $400</a></p>
+                <p id="10"><a class="button">AMD ryzen 9: $800</a></p>
+                <p id="11"><a class="button">AMD threadripper 3960x : $1500</a></p>
+                <p id="12"><a class="button">THA SHREDDER: $5000</a></p>
+            </div>
+            <h2>MOTHER BOARDS</h2>
+            <div id="container3" class="column">
+                <p id="13"><a class="button">ASUS b450: $150</a></p>
+                <p id="14"><a class="button">ASUS b550: $250</a></p>
+                <p id="15"><a class="button">ASUS x570: $350</a></p>
+                <p id="16"><a class="button">ASUS Godlike 570: $700</a></p>
+                <p id="17"><a class="button">AORUS XTREME: $2000</a></p>
+                <p id="18"><a class="button">MEGAVBOARD: $5000</a></p>
+            </div>
         </div>
-        <h2>PROCESSORS</h2>
-        <div id="container2" class="column">
-            <p id="7"><a class="button">AMD ryzen 3:             $200</a></p>
-            <p id="8"><a class="button">AMD ryzen 5:             $300</a></p>
-            <p id="9"><a class="button">AMD ryzen 7:             $400</a></p>
-            <p id="10"><a class="button">AMD ryzen 9:             $800</a></p>
-            <p id="11"><a class="button">AMD threadripper 3960x :  $1500</a></p>
-            <p id="12"><a class="button">THA SHREDDER:            $5000</a></p>
-        </div>
-        <h2>MOTHER BOARDS</h2>
-        <div id="container3" class="column">
-            <p id="13"><a class="button">ASUS b450:        $150</a></p>
-            <p id="14"><a class="button">ASUS b550:        $250</a></p>
-            <p id="15"><a class="button">ASUS x570:        $350</a></p>
-            <p id="16"><a class="button">ASUS Godlike 570: $700</a></p>
-            <p id="17"><a class="button">AORUS XTREME:     $2000</a></p>
-            <p id="18"><a class="button">MEGAVBOARD:       $5000</a></p>
-        </div>
-    </div>
-    <aside class = "">
-        <marquee id = "marquee2" class = "grids row" direction ="up">
-        </marquee>
-    </aside>
+        <aside class="">
+            <marquee id="marquee2" class="grids row" direction="up">
+            </marquee>
+        </aside>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="./assets/shop.js"></script>
 <script src="./assets/script.js"></script>
+<script src="./assets/shop.js"></script>
+
 </html>

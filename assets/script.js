@@ -20,9 +20,9 @@ var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIE
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIES_TREND.split(",")[0]}/twitter`
 //VARIABLES FOR CONVERSION
 
-var usdConversion = 0
-var cryptoHeld = 0
-var clickCount=0
+var usdConversion = 0;
+var cryptoHeld = 0;
+var clickCount = 0;
 
 gamePage.hide()
 shopPage.hide()
@@ -223,3 +223,5 @@ $("#save").on("click",function(event){
     event.preventDefault()
     storeCurrency(clickCount,usdConversion)
 });
+
+
