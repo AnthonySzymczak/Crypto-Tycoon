@@ -10,8 +10,17 @@
     
 </head>
 <body>
-    
-    <body class="hero">
+    <marquee id = "marquee1" direction="left">
+        <img id ="dogeTicker" src = "./assets/images/Dogecoin-ticker.jpg"/>
+        Price Changes - 15 Minutes:
+        <h3 id = "innerMarquee15m"></h3>
+        1 Hour:
+        <h3 id = "innerMarquee1h"></h3>
+        1 Day:
+        <h3 id = "innerMarquee1d"></h3>
+        <img id ="dogeTicker" src = "./assets/images/Dogecoin-ticker.jpg"/>
+    </marquee>
+    <div class="hero">
         <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
@@ -63,6 +72,7 @@
             </div>
         </nav>
         <h1>Crypto-Tycoon</h1>
+        
         <div class="container" id="crypto">
             <div class="center">
                 <video width="420" height="320" controls>
@@ -73,7 +83,6 @@
                   <button class="begin" id="startGame">Start Game</button>
     
         </div>
-        
         <div id="shopContainer">
         <h1>WELCOME TO COMPUTER PLUS!</h1>
         <h2>VIDEO CARDS</h2>
@@ -104,7 +113,10 @@
             <p id="18"><a class="button">MEGAVBOARD:       $5000</a></p>
         </div>
     </div>
-
+    <aside class = "">
+        <marquee id = "marquee2" class = "grids row" direction ="up">
+        </marquee>
+    </aside>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
