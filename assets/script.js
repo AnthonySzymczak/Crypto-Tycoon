@@ -23,7 +23,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIE
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
-/*
+
 gamePage.hide()
 shopPage.hide()
 strtbtn.click(loadGamePage)
@@ -33,7 +33,7 @@ function loadGamePage() {
     gamePage.show()
     // shopPage.show()
 }
-*/
+
 function cryptoTwitter(CRYPTO_TWITTER_API){
     fetch(CRYPTO_TWITTER_API).then(function(response){
         return response.json()
