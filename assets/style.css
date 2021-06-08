@@ -12,7 +12,20 @@ h1{
     display:block;
     text-align: center;
 }
+.htp{
+    color:gold;
+    font-weight: bold;
+    display: center;
+    font-size: 35px;
+    text-align: center;
+}
+p{
+    color:gold;
+    font-size: 25px;
+    display:block;
+    text-align: center;
 
+}
 .row {
     white-space: pre-wrap;
     height: 80px;
@@ -92,4 +105,9 @@ html {
 }
 #twitterHeaderIcon{
     padding: 5px
+}
+
+.dogedude{
+    width: 400px;
+    height: auto;
 }
