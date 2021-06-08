@@ -37,8 +37,6 @@ get();
 //
 //  VIDEO CARDS
 //
-//_____________________________________________________________________________________
-//tony's play area
 
 let elem1 = document.getElementById('1');
 elem1.value = 125;
@@ -71,36 +69,59 @@ let elem7 = document.getElementById('7');
 elem7.value = 200;
 elem7.addEventListener('click', subtractUSD);
 
-let elem8 = document.getElementById('8').append.val=300;
+let elem8 = document.getElementById('8');
+elem8.value = 300;
+elem8.addEventListener('click', subtractUSD);
 
-let elem9 = document.getElementById('9').append.val=400;
+let elem9 = document.getElementById('9');
+elem9.value = 400;
+elem9.addEventListener('click', subtractUSD);
 
-let elem10 = document.getElementById('10').append.val=800;
+let elem10 = document.getElementById('10');
+elem10.value = 800;
+elem10.addEventListener('click', subtractUSD);
 
-let elem11 = document.getElementById('11').append.val=1500;
+let elem11 = document.getElementById('11');
+elem11.value = 125;
+elem11.addEventListener('click', subtractUSD);
 
-let elem12 = document.getElementById('12').append.val=5000;
+let elem12 = document.getElementById('12');
+elem12.value = 5000;
+elem12.addEventListener('click', subtractUSD);
 
 //
 //  MOTHER BOARDS
 //
-let elem13 = document.getElementById('13').append.val=150;
+let elem13 = document.getElementById('13');
+elem13.value = 150;
+elem13.addEventListener('click', subtractUSD);
 
-let elem14 = document.getElementById('14').append.val=250;
+let elem14 = document.getElementById('14');
+elem14.value = 250;
+elem14.addEventListener('click', subtractUSD);
 
-let elem15 = document.getElementById('15').append.val=350;
+let elem15 = document.getElementById('15');
+elem15.value = 350;
+elem15.addEventListener('click', subtractUSD);
 
-let elem16 = document.getElementById('16').append.val=700;
+let elem16 = document.getElementById('16');
+elem16.value = 700;
+elem16.addEventListener('click', subtractUSD);
 
-let elem17 = document.getElementById('17').append.val=2000;
+let elem17 = document.getElementById('17');
+elem17.value = 2000;
+elem17.addEventListener('click', subtractUSD);
 
-let elem18 = document.getElementById('18').append.val=5000;
+let elem18 = document.getElementById('18');
+elem18.value = 5000;
+elem18.addEventListener('click', subtractUSD);
 
 
-
+/*
 function subtractUSD() {
     console.log('subtractUSD');        
-    for (i = usdConversion; 1 <= 18; val--) {
+    for (i = usdConversion; i <= 18; value--) {
+
     }
 }
-
+*/
