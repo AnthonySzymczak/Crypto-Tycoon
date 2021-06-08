@@ -20,9 +20,11 @@ var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${CRYPTOCURRENCIE
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${CRYPTOCURRENCIES_TREND.split(",")[0]}/twitter`
 //VARIABLES FOR CONVERSION
 
-var usdConversion = 0
-var cryptoHeld = 0
-var clickCount=0
+
+var usdConversion = 0;
+var cryptoHeld = 0;
+var clickCount = 0;
+
 
 gamePage.hide()
 shopPage.hide()
@@ -41,6 +43,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API){
         console.log(data)
         for(var i = 0;i<TWEETS;i++){
         const {date,like_count,media_link,retweet_count,status,user_image_link,user_name} = data[i]
+
         var splitMedia = media_link.split("/")
         if(splitMedia.indexOf("media") == -1){
             var isVideo = 1
@@ -55,6 +58,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API){
         conversionDate = conversionDate.toLocaleDateString("en-US")
         console.log(conversionDate)
         twitterFeed(i,{conversionDate,like_count,media_link,retweet_count,status,user_image_link,user_name},isVideo)
+
         }
     })
 }
@@ -151,16 +155,19 @@ function testHeader() {
     $("<h1>").text("Convert to USD").attr({"id":"convert"}).appendTo("#headerContainer")
     $("<h1>").text("Save").attr({"id":"save"}).appendTo("#headerContainer")
 }
+
 function twitterFeed(i,data,isVideo){
     console.log(data)
     console.log(isVideo)
     console.log(data.media_link)
+
     $("<div>").attr({"id":"twitterContainer"+i, "class":"card"}).appendTo("#marquee2")
     $("<header>").attr({"id":"twitterHeader"+i,"class":"card-header"}).appendTo("#twitterContainer"+i)
     $("<img>").attr({"id":"twitterHeaderIcon"+i,"class":"card-header-icon", "src": data.user_image_link}).appendTo("#twitterHeader"+i)
     $("<p>").text(data.user_name).attr({"id":"twitterHeaderTitle"+i,"class":"card-header-title"}).appendTo("#twitterHeader"+i)
     $("<div>").attr({"id":"twitterContentContainer"+i, "class":"card-content"}).appendTo("#twitterContainer"+i)
     $("<p>").text(data.status).attr({"id":"twitterContent"+i,"class":"content"}).appendTo("#twitterContentContainer"+i)
+
     twitterMedia(i,data, isVideo)
     $("<footer>").attr({"id":"twitterFooterContainer"+i,"class":"card-footer"}).appendTo("#twitterContainer"+i)
     $("<p>").text("Retweets:" + data.retweet_count).attr({"id":"twitterRT"+i, "class":"card-footer-item"}).appendTo("#twitterFooterContainer"+i)
@@ -176,6 +183,7 @@ function twitterMedia(i,data,isVideo){
     $("<video>").remove()    
     $("<img>").attr({"id":"twitterImage", "class":"card-image", "src":data.media_link}).appendTo("#twitterContentContainer"+i)
     }
+
 }
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount(){
@@ -218,6 +226,7 @@ if(localStorage.length< SAVED_VARIABLES)
 } else {
     console.log(clickCount,usdConversion)
     loadCurrency(clickCount,usdConversion)
+
 }
 testHeader()
 cryptoTwitter(CRYPTO_TWITTER_API)
@@ -242,3 +251,5 @@ $("#save").on("click",function(event){
     event.preventDefault()
     storeCurrency(clickCount,usdConversion)
 });
+
+
