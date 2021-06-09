@@ -3,7 +3,7 @@
 const API_KEY =
   "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
 const CURRENCIES = "USD";
-const SAVED_VARIABLES = 2;
+const SAVED_VARIABLES = 3;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
@@ -23,15 +23,14 @@ var HTPbtn = $("#HTPbtn");
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
-    CRYPTOCURRENCIES_CONVERSION.split(",")[0]
+  CRYPTOCURRENCIES_CONVERSION.split(",")[0]
 }&tsyms=${CURRENCIES}&api_key=${API_KEY}`;
 var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${
-    CRYPTOCURRENCIES_TREND.split(",")[0]
+  CRYPTOCURRENCIES_TREND.split(",")[0]
 }/`;
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
-    CRYPTOCURRENCIES_TREND.split(",")[0]
+  CRYPTOCURRENCIES_TREND.split(",")[0]
 }/twitter`;
-
 var DOGE_HASHRATE = 1.00;
 var usdConversion = 0;
 var cryptoHeld = 0;
@@ -196,7 +195,7 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
           conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
           "\nYour Total is: $" +
           conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          " Dollars with a 10% tax"
+          " Dollars with a 10%"
       );
     });
 }
@@ -218,6 +217,11 @@ function loadUSDConversion() {
   var usdConversion = localStorage.getItem("USD-held");
   usdConversion = parseFloat(usdConversion);
   return usdConversion;
+}
+function loadHashrate() {
+  var DOGE_HASHRATE = localStorage.getItem("hashRate");
+  DOGE_HASHRATE = parseFloat(DOGE_HASHRATE);
+  return DOGE_HASHRATE;
 }
 //CONVERTS AND DISPLAYS UPDATED clickCount and usdConversion FROM LOCAL STORAGE
 function displayCurrentValues(clickCount, usdConversion) {
@@ -351,8 +355,9 @@ function resetValues() {
 if (localStorage.length < SAVED_VARIABLES) {
   var usdConversion = 0;
   var clickCount = 0;
+  var DOGE_HASHRATE = 1.00
 } else {
-
+  DOGE_HASHRATE = loadHashrate()
   console.log(clickCount, usdConversion);
   loadCurrency(clickCount, usdConversion);
 
