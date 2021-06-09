@@ -1,121 +1,129 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-h1{
-   
-    color:gold;
-    font-weight: bold;
-    display: center;
-    font-size: 40px;
-    display:block;
-    text-align: center;
+h1 {
+  color: gold;
+  font-weight: bold;
+  display: center;
+  font-size: 40px;
+  display: block;
+  text-align: center;
 }
-.htp{
-    color:gold;
-    font-weight: bold;
-    display: center;
-    font-size: 35px;
-    text-align: center;
+.htp {
+  color: gold;
+  font-weight: bold;
+  display: center;
+  font-size: 35px;
+  text-align: center;
 }
-p{
-    color:gold;
-    font-size: 25px;
-    display:block;
-    text-align: center;
-
+p {
+  color: gold;
+  font-size: 25px;
+  display: block;
+  text-align: center;
 }
 .row {
-    white-space: pre-wrap;
-    height: 80px;
-    border-top: 1px solid white;;
-  }
-  .column{
-      column-count: 2;
-      width: fit-content;
-      position: relative;
-      justify-content: space-between;
-  }
-.begin{
-    color:black;
-    padding: 15px 32px;
-    display: block;
-    text-align: center;
-    font-size: 16px;
-    margin:auto;
-    background-color:gold;
-    border: 2px solid black;
+  white-space: pre-wrap;
+  height: 80px;
+  border-top: 1px solid white;
+}
+.column {
+  column-count: 2;
+  width: fit-content;
+  position: relative;
+  justify-content: space-between;
+}
+.begin {
+  color: black;
+  padding: 15px 32px;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
 }
 
-.begin:hover{
-    background:blue;
+.begin:hover {
+  background: blue;
 }
-.center{
-    margin: 0 auto;
-    width: 400px;
-    
+.btn {
+  background-color: gold;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: solid;
+  display: inline-block;
+  font-size: 20px;
 }
-html { 
-    background: url(../assets/images/bitcoin-1813503_1280.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
+.center {
+  margin: 0 auto;
+  width: 400px;
+}
+html {
+  background: url(../assets/images/bitcoin-1813503_1280.jpg) no-repeat center
+    center fixed;
+  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-} 
+}
 #marquee1 {
-    font-size: large;
-    color: rgb(255, 188, 4);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
+  font-size: large;
+  color: rgb(255, 188, 4);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
 }
 #marquee1 h3 {
-    display:inline-flex;
-    margin-left: 5px;
-    margin-right:10px;
+  display: inline-flex;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 #dogeTicker {
-    height: auto;
-    width: 25px;
-    vertical-align: middle;
-    border-radius: 5px;
-    margin: 5px;
+  height: auto;
+  width: 25px;
+  vertical-align: middle;
+  border-radius: 5px;
+  margin: 5px;
 }
 .positiveChange {
-    color:green;
+  color: green;
 }
 .negativeChange {
-    color:red;
+  color: red;
 }
 .neutralChange {
-    color:gray;
+  color: gray;
 }
 .column {
-    column-count: 4;
-    padding: 0px;
+  column-count: 4;
+  padding: 0px;
 }
 #marquee2 .card {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 #twitterContainer {
-    font-size: 1.5vw;
+  font-size: 1.5vw;
 }
-#twitterHeaderIcon{
-    padding: 5px
+#twitterHeaderIcon {
+  padding: 5px;
 }
 
-.dogedude{
-    width: 400px;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    
+
+.dogedude {
+  width: 400px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-h2{
-    color: #fff;
-    text-align: left;
+
+.asideContainer p{
+    color: black;
 }
