@@ -5,7 +5,6 @@ const API_KEY =
 const CURRENCIES = "USD";
 const DOGE_HASHRATE = 0.25;
 const SAVED_VARIABLES = 2;
-const DOGE_HASHRATE = .25;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
