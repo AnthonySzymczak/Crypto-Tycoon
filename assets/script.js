@@ -8,7 +8,7 @@ const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
 const TWEETS = 3;
-const CONVERSION_RATE = .90;
+const CONVERSION_RATE = 0.9;
 //JQUERY ID REFERENCES CONTAINERS
 var gamePage = $("#gamePage");
 var shopPage = $("#shopContainer");
@@ -21,7 +21,6 @@ var shopBtn = $("#shopBtn");
 var homeBtn = $("#homeBtn");
 var HTPbtn = $("#HTPbtn");
 var dogeBtn = $("#superDoge");
-
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
@@ -48,10 +47,10 @@ howtoPlayPage.hide();
 strtbtn.click(loadGamePage);
 function loadGamePage() {
   strtPage.hide();
-
+  addClickArea();
   gamePage.show();
   shopPage.hide();
-  $("doge").hide()
+  $("doge").hide();
   howtoPlayPage.hide();
 }
 //from nav bar on click loads homepage
@@ -61,7 +60,7 @@ function loadHomePage() {
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
-  $("doge").hide()
+  $("doge").hide();
 }
 // from nav bar on click loads shop
 shopBtn.click(loadShopPage);
@@ -70,7 +69,7 @@ function loadShopPage() {
   gamePage.hide();
   strtPage.hide();
   howtoPlayPage.hide();
-  $("doge").hide()
+  $("doge").hide();
 }
 //nav bar on click loads HTP page
 HTPbtn.click(loadHTPpge);
@@ -79,7 +78,7 @@ function loadHTPpge() {
   shopPage.hide();
   gamePage.hide();
   strtPage.hide();
-  $("doge").hide()
+  $("doge").hide();
 }
 
 //loads god
@@ -91,7 +90,7 @@ function loadGod() {
   howtoPlayPage.hide();
   $("<img>")
     .attr({
-        id: "doge",
+      id: "doge",
       src: "./assets/imagesDogedudefrontpage.jpg",
     })
     .appendTo("#dogeGod");
@@ -103,7 +102,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
       return response.json();
     })
     .then(function (data) {
-      twitterContainer()
+      twitterContainer();
       for (var i = 0; i < TWEETS; i++) {
         const {
           date,
@@ -264,10 +263,7 @@ function testHeader() {
     .text("Doge Coins:" + cryptoHeld)
     .attr({ id: "currentCrypto" })
     .appendTo("#gamePage");
-  $("<h1>")
-    .text("ClickHere")
-    .attr({ id: "increment" })
-    .appendTo("#gamePage");
+  $("<h1>").text("ClickHere").attr({ id: "increment" }).appendTo("#gamePage");
   $("<h1>")
     .text("Convert to USD")
     .attr({ id: "convert" })
@@ -275,8 +271,12 @@ function testHeader() {
   $("<h1>").text("Save").attr({ id: "save" }).appendTo("#gamePage");
 }
 function twitterContainer() {
-  $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
-  $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
+  $("<aside>")
+    .attr({ id: "aside", class: "asideContainer" })
+    .appendTo("#gamePage");
+  $("<marquee>")
+    .attr({ id: "marquee2", class: "grids row", direction: "up" })
+    .appendTo("#aside");
 }
 function twitterFeed(i, data, isVideo) {
   $("<div>")
@@ -351,19 +351,6 @@ function twitterMedia(i, data, isVideo) {
     .attr({ id: "twitterFooterDate" + i, class: "card-footer" })
     .appendTo("#twitterContainer" + i);
 }
-function twitterMedia(i, data, isVideo) {
-  if (isVideo == 1) {
-    $("<img>").remove();
-    $("<video>")
-      .attr({ id: "twitterVideo", class: "card-image", src: data.media_link })
-      .appendTo("#twitterContentContainer" + i);
-  } else if (isVideo == 0) {
-    $("<video>").remove();
-    $("<img>")
-      .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
-      .appendTo("#twitterContentContainer" + i);
-  }
-}
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount() {
   cryptoHeld = convertDoge(clickCount);
@@ -398,10 +385,9 @@ function resetValues() {
 if (localStorage.length < SAVED_VARIABLES) {
   var usdConversion = 0;
   var clickCount = 0;
-
-  var DOGE_HASHRATE = 1.00
+  var DOGE_HASHRATE = 1.0;
 } else {
-  DOGE_HASHRATE = loadHashrate()
+  DOGE_HASHRATE = loadHashrate();
   loadCurrency(clickCount, usdConversion);
 }
 cryptoTrends(CRYPTO_TREND_API);
@@ -422,9 +408,31 @@ $("#convert").on("click", function (event) {
 });
 //SAVES usdConversion AND clickCount TO LOCAL STORAGE
 
-
-
 $("#save").on("click", function (event) {
   event.preventDefault();
   storeCurrency(clickCount, usdConversion);
 });
+
+//new clicking method
+function addClickArea() {
+  // for (var g = 0; (g = 4); g++) {
+    $("<div>")
+      .attr({
+        id: "clickerArea",
+        class: "grid-container"
+      })
+      .appendTo("#gamePage");
+  // }
+
+  $("<img>")
+    .attr({
+      id: "coin",
+      src: "./assets/images/Dogecoin-ticker.jpg",
+    })
+    .appendTo("#clickArea");
+  $("#coin").on("click", function (event) {
+    event.preventDefault();
+    clickCount++;
+    updateCount(clickCount);
+  });
+}

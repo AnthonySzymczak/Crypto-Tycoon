@@ -105,6 +105,11 @@ html {
   column-count: 4;
   padding: 0px;
 }
+#marquee2{
+height: 125px;
+width: 100%;
+}
+
 #marquee2 .card {
   margin-bottom: 20px;
 }
@@ -114,7 +119,6 @@ html {
 #twitterHeaderIcon {
   padding: 5px;
 }
-
 
 .dogedude {
   width: 400px;
@@ -126,4 +130,8 @@ html {
 
 .asideContainer p{
     color: black;
+}
+
+.grid-container{
+  display: grid;
 }
