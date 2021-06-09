@@ -123,6 +123,7 @@ function subtractUSD(event) {
         localStorage.setItem("USD-held",usdConversion);
         $('#currentUSD').text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
         DOGE_HASHRATE += hash;
+        localStorage.setItem("hashRate",DOGE_HASHRATE);
         console.log(DOGE_HASHRATE,hash);
         
         elem.remove();
