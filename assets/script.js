@@ -58,7 +58,6 @@ function loadGamePage() {
 homeBtn.click(loadHomePage);
 function loadHomePage() {
   strtPage.show();
-  console.log("bryh");
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
@@ -69,7 +68,6 @@ function loadHomePage() {
 shopBtn.click(loadShopPage);
 function loadShopPage() {
   shopPage.show();
-  console.log("bruh");
   gamePage.hide();
   strtPage.hide();
   header.hide();
@@ -84,7 +82,6 @@ function loadHTPpge() {
   gamePage.hide();
   strtPage.hide();
   header.hide();
-  console.log("bryh");
   $("doge").hide()
 }
 
@@ -92,8 +89,6 @@ function loadHTPpge() {
 dogeBtn.click(loadGod);
 function loadGod() {
   strtPage.hide();
-  console.log("bryh");
-
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
@@ -112,7 +107,6 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       for (var i = 0; i < TWEETS; i++) {
         const {
           date,
@@ -130,20 +124,8 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
         } else {
           isVideo = 0;
         }
-        console.log(
-          date,
-          like_count,
-          media_link,
-          retweet_count,
-          status,
-          user_image_link,
-          user_name
-        );
         var conversionDate = new Date(date);
-        console.log(date);
-        console.log(conversionDate);
         conversionDate = conversionDate.toLocaleDateString("en-US");
-        console.log(conversionDate);
         twitterFeed(
           i,
           {
@@ -166,7 +148,6 @@ function cryptoTrends(CRYPTO_TREND_API) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       const { percent_change_15m, percent_change_1h, percent_change_24h } =
         data.quotes.USD;
       dogeTicker({ percent_change_15m, percent_change_1h, percent_change_24h });
@@ -266,7 +247,6 @@ function loadHashrate() {
 }
 //CONVERTS AND DISPLAYS UPDATED clickCount and usdConversion FROM LOCAL STORAGE
 function displayCurrentValues(clickCount, usdConversion) {
-  console.log(clickCount, usdConversion);
   usdConversion = parseFloat(usdConversion);
   $("#currentUSD").text(
     "Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS)
@@ -299,10 +279,6 @@ function testHeader() {
 }
 
 function twitterFeed(i, data, isVideo) {
-  console.log(data);
-  console.log(isVideo);
-  console.log(data.media_link);
-
   $("<div>")
     .attr({ id: "twitterContainer" + i, class: "card" })
     .appendTo("#marquee2");
@@ -346,7 +322,6 @@ function twitterFeed(i, data, isVideo) {
     .appendTo("#twitterContainer" + i);
 }
 function twitterMedia(i, data, isVideo) {
-  console.log(isVideo, data.media_link);
   if (isVideo == 1) {
     $("<img>").remove();
     $("<video>")
@@ -377,7 +352,6 @@ function twitterMedia(i, data, isVideo) {
     .appendTo("#twitterContainer" + i);
 }
 function twitterMedia(i, data, isVideo) {
-  console.log(isVideo, data.media_link);
   if (isVideo == 1) {
     $("<img>").remove();
     $("<video>")
@@ -408,9 +382,7 @@ function conversionAmount(currentPrice, cryptoHeld) {
 }
 //CONVERTED AMOUNT + TOTALUSD
 function conversionTotal(currentPrice, cryptoHeld) {
-  console.log(usdConversion);
   usdConversion += conversionAmount(currentPrice, cryptoHeld) * CONVERSION_RATE;
-  console.log(usdConversion);
   resetValues();
   return usdConversion;
 }
@@ -430,9 +402,7 @@ if (localStorage.length < SAVED_VARIABLES) {
   var DOGE_HASHRATE = 1.00
 } else {
   DOGE_HASHRATE = loadHashrate()
-  console.log(clickCount, usdConversion);
   loadCurrency(clickCount, usdConversion);
-
 }
 testHeader();
 cryptoTwitter(CRYPTO_TWITTER_API);
