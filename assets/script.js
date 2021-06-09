@@ -3,23 +3,25 @@
 const API_KEY =
   "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
 const CURRENCIES = "USD";
-const DOGE_HASHRATE = 0.25;
 const SAVED_VARIABLES = 2;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
 const TWEETS = 3;
+const CONVERSION_RATE = 0.9;
 //JQUERY ID REFERENCES CONTAINERS
 var gamePage = $("#gamePage");
 var shopPage = $("#shopContainer");
 var strtPage = $("#crypto");
 var header = $("#headerContainer");
-var howtoPlayPage = $("howToPlaypge");
+var howtoPlayPage = $("#howToPlaypge");
+var dogeContainer = $("#dogeGod");
 //JQUERY ID REFERENCES BTNS
 var strtbtn = $("#startGame");
-var shopBtn = $("#shopbtn");
+var shopBtn = $("#shopBtn");
 var homeBtn = $("#homeBtn");
-var HTPbtn = $("HTPbtn");
+var HTPbtn = $("#HTPbtn");
+var dogeBtn = $("#superDoge");
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
@@ -32,6 +34,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
   CRYPTOCURRENCIES_TREND.split(",")[0]
 }/twitter`;
 
+var DOGE_HASHRATE = 1.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -47,35 +50,60 @@ function loadGamePage() {
   strtPage.hide();
   gamePage.show();
   shopPage.hide();
+  $("doge").hide()
   howtoPlayPage.hide();
 }
 //from nav bar on click loads homepage
 homeBtn.click(loadHomePage);
 function loadHomePage() {
   strtPage.show();
+  console.log("bryh");
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
   header.hide();
+  $("doge").hide()
 }
 // from nav bar on click loads shop
 shopBtn.click(loadShopPage);
 function loadShopPage() {
   shopPage.show();
+  console.log("bruh");
   gamePage.hide();
   strtPage.hide();
   header.hide();
   howtoPlayPage.hide();
+  $("doge").hide()
 }
 //nav bar on click loads HTP page
 HTPbtn.click(loadHTPpge);
 function loadHTPpge() {
   howtoPlayPage.show();
-  shopPage.show();
+  shopPage.hide();
   gamePage.hide();
   strtPage.hide();
   header.hide();
+  console.log("bryh");
+  $("doge").hide()
 }
+
+//loads god
+dogeBtn.click(loadGod);
+function loadGod() {
+  strtPage.hide();
+  console.log("bryh");
+  gamePage.hide();
+  shopPage.hide();
+  howtoPlayPage.hide();
+  header.hide();
+  $("<img>")
+    .attr({
+        id: "doge",
+      src: "./assets/imagesDogedudefrontpage.jpg",
+    })
+    .appendTo("#dogeGod");
+}
+
 
 function cryptoTwitter(CRYPTO_TWITTER_API) {
   fetch(CRYPTO_TWITTER_API)
@@ -207,7 +235,7 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
           conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
           "\nYour Total is: $" +
           conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          " Dollars"
+          " Dollars with a 10% tax"
       );
     });
 }
@@ -324,6 +352,37 @@ function twitterMedia(i, data, isVideo) {
       .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
       .appendTo("#twitterContentContainer" + i);
   }
+
+  twitterMedia(i, data, isVideo);
+  $("<footer>")
+    .attr({ id: "twitterFooterContainer" + i, class: "card-footer" })
+    .appendTo("#twitterContainer" + i);
+  $("<p>")
+    .text("Retweets:" + data.retweet_count)
+    .attr({ id: "twitterRT" + i, class: "card-footer-item" })
+    .appendTo("#twitterFooterContainer" + i);
+  $("<p>")
+    .text("Likes:" + data.like_count)
+    .attr({ id: "twitterFooterLikes" + i, class: "card-footer-item" })
+    .appendTo("#twitterFooterContainer" + i);
+  $("<p>")
+    .text(data.conversionDate)
+    .attr({ id: "twitterFooterDate" + i, class: "card-footer" })
+    .appendTo("#twitterContainer" + i);
+}
+function twitterMedia(i, data, isVideo) {
+  console.log(isVideo, data.media_link);
+  if (isVideo == 1) {
+    $("<img>").remove();
+    $("<video>")
+      .attr({ id: "twitterVideo", class: "card-image", src: data.media_link })
+      .appendTo("#twitterContentContainer" + i);
+  } else if (isVideo == 0) {
+    $("<video>").remove();
+    $("<img>")
+      .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
+      .appendTo("#twitterContentContainer" + i);
+  }
 }
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount() {
@@ -343,7 +402,9 @@ function conversionAmount(currentPrice, cryptoHeld) {
 }
 //CONVERTED AMOUNT + TOTALUSD
 function conversionTotal(currentPrice, cryptoHeld) {
-  usdConversion += conversionAmount(currentPrice, cryptoHeld);
+  console.log(usdConversion);
+  usdConversion += conversionAmount(currentPrice, cryptoHeld) * CONVERSION_RATE;
+  console.log(usdConversion);
   resetValues();
   return usdConversion;
 }
