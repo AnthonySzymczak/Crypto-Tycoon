@@ -128,23 +128,34 @@ html {
 #convert{
   color: black;
   padding: 15px 32px;
-  display: inline-block;
+  display: block;
   font-size: 16px;
   margin: auto;
   background-color: gold;
   border: 2px solid black;
-  vertical-align: middle;
+  text-align: center;
   
 }
 #save{
   color: black;
   padding: 15px 32px;
-  display: inline-block;
+  display: block;
   font-size: 16px;
   margin: auto;
   background-color: gold;
   border: 2px solid black;
-  vertical-align: middle;
+  text-align: center;
 }
 
+.button{
+  color: black;
+  padding: 15px 32px;
+  display: block;
+  font-size: 16px;
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
+  text-align: center;
+
+}
 
