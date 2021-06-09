@@ -13,7 +13,6 @@ const CONVERSION_RATE = .90;
 var gamePage = $("#gamePage");
 var shopPage = $("#shopContainer");
 var strtPage = $("#crypto");
-var header = $("#headerContainer");
 var howtoPlayPage = $("#howToPlaypge");
 var dogeContainer = $("#dogeGod");
 //JQUERY ID REFERENCES BTNS
@@ -39,10 +38,11 @@ var DOGE_HASHRATE = 1.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
+testHeader();
+cryptoTwitter(CRYPTO_TWITTER_API);
 //on load displays homepage and hides other pages
 gamePage.hide();
 shopPage.hide();
-header.hide();
 howtoPlayPage.hide();
 // on click loads game page
 strtbtn.click(loadGamePage);
@@ -61,7 +61,6 @@ function loadHomePage() {
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
-  header.hide();
   $("doge").hide()
 }
 // from nav bar on click loads shop
@@ -70,7 +69,6 @@ function loadShopPage() {
   shopPage.show();
   gamePage.hide();
   strtPage.hide();
-  header.hide();
   howtoPlayPage.hide();
   $("doge").hide()
 }
@@ -81,7 +79,6 @@ function loadHTPpge() {
   shopPage.hide();
   gamePage.hide();
   strtPage.hide();
-  header.hide();
   $("doge").hide()
 }
 
@@ -92,7 +89,6 @@ function loadGod() {
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
-  header.hide();
   $("<img>")
     .attr({
         id: "doge",
@@ -107,6 +103,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
       return response.json();
     })
     .then(function (data) {
+      twitterContainer()
       for (var i = 0; i < TWEETS; i++) {
         const {
           date,
@@ -257,27 +254,30 @@ function displayCurrentValues(clickCount, usdConversion) {
 //TEST HEADER TO DISPLAY on.("click") FUNCTIONALITY, CAN BE DELETED ONCE GAME
 //PAGE HAS BEEN CREATED AND ID's CORRECTLY REFERENCED.
 function testHeader() {
-  $("<header>").attr({ id: "headerContainer" }).appendTo(document.body);
-  $("<h1>").attr({ id: "cryptoPrice" }).appendTo("#headerContainer");
+  $("<header>").attr({ id: "gamePage" }).appendTo(document.body);
+  $("<h1>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
   $("<h1>")
     .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
     .attr({ id: "currentUSD" })
-    .appendTo("#headerContainer");
+    .appendTo("#gamePage");
   $("<h2>")
     .text("Doge Coins:" + cryptoHeld)
     .attr({ id: "currentCrypto" })
-    .appendTo("#headerContainer");
+    .appendTo("#gamePage");
   $("<h1>")
     .text("ClickHere")
     .attr({ id: "increment" })
-    .appendTo("#headerContainer");
+    .appendTo("#gamePage");
   $("<h1>")
     .text("Convert to USD")
     .attr({ id: "convert" })
-    .appendTo("#headerContainer");
-  $("<h1>").text("Save").attr({ id: "save" }).appendTo("#headerContainer");
+    .appendTo("#gamePage");
+  $("<h1>").text("Save").attr({ id: "save" }).appendTo("#gamePage");
 }
-
+function twitterContainer() {
+  $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
+  $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
+}
 function twitterFeed(i, data, isVideo) {
   $("<div>")
     .attr({ id: "twitterContainer" + i, class: "card" })
@@ -404,8 +404,6 @@ if (localStorage.length < SAVED_VARIABLES) {
   DOGE_HASHRATE = loadHashrate()
   loadCurrency(clickCount, usdConversion);
 }
-testHeader();
-cryptoTwitter(CRYPTO_TWITTER_API);
 cryptoTrends(CRYPTO_TREND_API);
 
 // setInterval(function(){
