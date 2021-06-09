@@ -46,9 +46,6 @@ p {
   border: 2px solid black;
 }
 
-.begin:hover {
-  background: blue;
-}
 .btn {
   background-color: gold;
   border: none;
