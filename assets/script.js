@@ -3,7 +3,6 @@
 const API_KEY =
   "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
 const CURRENCIES = "USD";
-const DOGE_HASHRATE = 0.25;
 const SAVED_VARIABLES = 2;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
@@ -23,15 +22,16 @@ var HTPbtn = $("#HTPbtn");
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
-  CRYPTOCURRENCIES_CONVERSION.split(",")[0]
+    CRYPTOCURRENCIES_CONVERSION.split(",")[0]
 }&tsyms=${CURRENCIES}&api_key=${API_KEY}`;
 var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${
-  CRYPTOCURRENCIES_TREND.split(",")[0]
+    CRYPTOCURRENCIES_TREND.split(",")[0]
 }/`;
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
-  CRYPTOCURRENCIES_TREND.split(",")[0]
+    CRYPTOCURRENCIES_TREND.split(",")[0]
 }/twitter`;
 
+var DOGE_HASHRATE = 200.00;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -39,7 +39,7 @@ var clickCount = 0;
 
 //on load displays homepage and hides other pages
 gamePage.hide();
-shopPage.hide();
+//shopPage.hide();
 header.hide();
 howtoPlayPage.hide();
 // on click loads game page
