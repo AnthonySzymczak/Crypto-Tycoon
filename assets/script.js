@@ -278,7 +278,7 @@ function testHeader() {
   gameButtonContainer()
 }
 function gameButtonContainer(){
-  $("<div>").attr({"id":"buttonContainer","class":"begin"}).appendTo("#gamePage")
+  $("<div>").attr({"id":"buttonContainer","class":"gameBtn"}).appendTo("#gamePage")
   $("<button>").attr({"id":"convert", "class":"btn"}).text("Convert").appendTo("#buttonContainer")
   $("<button>").attr({"id":"save", "class":"btn"}).text("Save").appendTo("#buttonContainer")
 
