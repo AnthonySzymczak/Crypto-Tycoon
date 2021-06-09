@@ -112,7 +112,9 @@ html {
   padding: 5px;
 }
 
-
+#marquee2{
+  height: 100px;
+}
 .dogedude {
   width: 400px;
   height: auto;

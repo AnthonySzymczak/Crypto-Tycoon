@@ -334,12 +334,12 @@ function twitterMedia(i, data, isVideo) {
   if (isVideo == 1) {
     $("<img>").remove();
     $("<video>")
-      .attr({ id: "twitterVideo", class: "card-image", src: data.media_link })
+      .attr({ id: "twitterVideo", class: "card-image center", src: data.media_link })
       .appendTo("#twitterContentContainer" + i);
   } else if (isVideo == 0) {
     $("<video>").remove();
     $("<img>")
-      .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
+      .attr({ id: "twitterImage", class: "card-image center", src: data.media_link })
       .appendTo("#twitterContentContainer" + i);
   }
 }
