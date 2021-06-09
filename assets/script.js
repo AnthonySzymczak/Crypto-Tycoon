@@ -3,7 +3,7 @@
 const API_KEY =
   "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
 const CURRENCIES = "USD";
-const SAVED_VARIABLES = 3;
+const SAVED_VARIABLES = 2;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
@@ -222,10 +222,13 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
 function storeCurrency() {
   localStorage.setItem("crypto-held", clickCount);
   localStorage.setItem("USD-held", usdConversion);
+  localStorage.setItem("hashRate", DOGE_HASHRATE);
 }
 function loadCurrency() {
   clickCount = loadClicks();
   usdConversion = loadUSDConversion();
+  DOGE_HASHRATE = loadHashRate();
+  console.log(clickCount,usdConversion)
   displayCurrentValues(clickCount, usdConversion);
 }
 function loadClicks() {
@@ -237,7 +240,7 @@ function loadUSDConversion() {
   usdConversion = parseFloat(usdConversion);
   return usdConversion;
 }
-function loadHashrate() {
+function loadHashRate() {
   var DOGE_HASHRATE = localStorage.getItem("hashRate");
   DOGE_HASHRATE = parseFloat(DOGE_HASHRATE);
   return DOGE_HASHRATE;
@@ -255,8 +258,10 @@ function displayCurrentValues(clickCount, usdConversion) {
 //PAGE HAS BEEN CREATED AND ID's CORRECTLY REFERENCED.
 function testHeader() {
   $("<header>").attr({ id: "gamePage" }).appendTo(document.body);
-  $("<h1>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
-  $("<h1>")
+
+  $("<h3>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
+  $("<h2>")
+
     .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
     .attr({ id: "currentUSD" })
     .appendTo("#gamePage");
@@ -268,11 +273,15 @@ function testHeader() {
     .text("ClickHere")
     .attr({ id: "increment" })
     .appendTo("#gamePage");
-  $("<h1>")
-    .text("Convert to USD")
-    .attr({ id: "convert" })
-    .appendTo("#gamePage");
-  $("<h1>").text("Save").attr({ id: "save" }).appendTo("#gamePage");
+
+  //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1  
+  gameButtonContainer()
+}
+function gameButtonContainer(){
+  $("<div>").attr({"id":"buttonContainer","class":"begin"}).appendTo("#gamePage")
+  $("<button>").attr({"id":"convert", "class":"btn"}).text("Convert").appendTo("#buttonContainer")
+  $("<button>").attr({"id":"save", "class":"btn"}).text("Save").appendTo("#buttonContainer")
+
 }
 function twitterContainer() {
   $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
@@ -303,36 +312,6 @@ function twitterFeed(i, data, isVideo) {
     .text(data.status)
     .attr({ id: "twitterContent" + i, class: "content" })
     .appendTo("#twitterContentContainer" + i);
-
-  twitterMedia(i, data, isVideo);
-  $("<footer>")
-    .attr({ id: "twitterFooterContainer" + i, class: "card-footer" })
-    .appendTo("#twitterContainer" + i);
-  $("<p>")
-    .text("Retweets:" + data.retweet_count)
-    .attr({ id: "twitterRT" + i, class: "card-footer-item" })
-    .appendTo("#twitterFooterContainer" + i);
-  $("<p>")
-    .text("Likes:" + data.like_count)
-    .attr({ id: "twitterFooterLikes" + i, class: "card-footer-item" })
-    .appendTo("#twitterFooterContainer" + i);
-  $("<p>")
-    .text(data.conversionDate)
-    .attr({ id: "twitterFooterDate" + i, class: "card-footer" })
-    .appendTo("#twitterContainer" + i);
-}
-function twitterMedia(i, data, isVideo) {
-  if (isVideo == 1) {
-    $("<img>").remove();
-    $("<video>")
-      .attr({ id: "twitterVideo", class: "card-image", src: data.media_link })
-      .appendTo("#twitterContentContainer" + i);
-  } else if (isVideo == 0) {
-    $("<video>").remove();
-    $("<img>")
-      .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
-      .appendTo("#twitterContentContainer" + i);
-  }
 
   twitterMedia(i, data, isVideo);
   $("<footer>")
@@ -395,14 +374,13 @@ function resetValues() {
 
 //CALLS TEST HEADER, LOADS DATA FROM LOCALSTORAGE AND BUTTONS FOR TEST HEADER
 //CHECKS IF LOCAL STORAGE POPULATED ELSE ZERO
-if (localStorage.length < SAVED_VARIABLES) {
+if (localStorage.getItem("USD-held") == null && localStorage.getItem("crypto-held") == null && localStorage.getItem("hashRate") == null)  {
   var usdConversion = 0;
   var clickCount = 0;
-
   var DOGE_HASHRATE = 1.00
+  storeCurrency(clickCount,usdConversion,DOGE_HASHRATE)
 } else {
-  DOGE_HASHRATE = loadHashrate()
-  loadCurrency(clickCount, usdConversion);
+  (clickCount, usdConversion,DOGE_HASHRATE);
 }
 cryptoTrends(CRYPTO_TREND_API);
 
@@ -421,10 +399,7 @@ $("#convert").on("click", function (event) {
   cryptoToUSD(CRYPTO_USD_PRICE_API);
 });
 //SAVES usdConversion AND clickCount TO LOCAL STORAGE
-
-
-
 $("#save").on("click", function (event) {
   event.preventDefault();
-  storeCurrency(clickCount, usdConversion);
+  storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 });
