@@ -276,6 +276,7 @@ function loadGamePageContainer(DOGE_HASHRATE) {
   gameButtonContainer(DOGE_HASHRATE)
   cryptoTwitter(CRYPTO_TWITTER_API);
 }
+
 //CREATES SAVE AND CONVERT BUTTON, DISPLAYS CURRENT HASHRATE
 function gameButtonContainer(DOGE_HASHRATE){
   $("<div>").attr({"id":"buttonContainer","class":"begin"}).appendTo("#gamePage")
