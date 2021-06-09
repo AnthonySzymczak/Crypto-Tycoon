@@ -31,7 +31,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
     CRYPTOCURRENCIES_TREND.split(",")[0]
 }/twitter`;
 
-var DOGE_HASHRATE = 200.00;
+var DOGE_HASHRATE = 1.00;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -39,7 +39,7 @@ var clickCount = 0;
 
 //on load displays homepage and hides other pages
 gamePage.hide();
-//shopPage.hide();
+shopPage.hide();
 header.hide();
 howtoPlayPage.hide();
 // on click loads game page
