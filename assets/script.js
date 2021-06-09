@@ -5,10 +5,12 @@ const API_KEY =
 const CURRENCIES = "USD";
 const DOGE_HASHRATE = 0.25;
 const SAVED_VARIABLES = 2;
+const DOGE_HASHRATE = .25;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
 const TWEETS = 3;
+const CONVERSION_RATE = .90;
 //JQUERY ID REFERENCES CONTAINERS
 var gamePage = $("#gamePage");
 var shopPage = $("#shopContainer");
@@ -31,7 +33,7 @@ var CRYPTO_TREND_API = `https://api.coinpaprika.com/v1/tickers/${
 var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
   CRYPTOCURRENCIES_TREND.split(",")[0]
 }/twitter`;
-
+var DOGE_HASHRATE = 1.00;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -195,7 +197,7 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
           conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
           "\nYour Total is: $" +
           conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          " Dollars"
+          " Dollars with a 10% tax"
       );
     });
 }
@@ -332,7 +334,9 @@ function conversionAmount(currentPrice, cryptoHeld) {
 }
 //CONVERTED AMOUNT + TOTALUSD
 function conversionTotal(currentPrice, cryptoHeld) {
-  usdConversion += conversionAmount(currentPrice, cryptoHeld);
+    console.log(usdConversion)
+  usdConversion += (conversionAmount(currentPrice, cryptoHeld) * CONVERSION_RATE);
+  console.log(usdConversion)
   resetValues();
   return usdConversion;
 }
