@@ -13,7 +13,6 @@ const CONVERSION_RATE = .90;
 var gamePage = $("#gamePage");
 var shopPage = $("#shopContainer");
 var strtPage = $("#crypto");
-var header = $("#headerContainer");
 var howtoPlayPage = $("#howToPlaypge");
 var dogeContainer = $("#dogeGod");
 //JQUERY ID REFERENCES BTNS
@@ -39,10 +38,11 @@ var DOGE_HASHRATE = 1.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
+testHeader();
+cryptoTwitter(CRYPTO_TWITTER_API);
 //on load displays homepage and hides other pages
 gamePage.hide();
 shopPage.hide();
-header.hide();
 howtoPlayPage.hide();
 // on click loads game page
 strtbtn.click(loadGamePage);
@@ -58,21 +58,17 @@ function loadGamePage() {
 homeBtn.click(loadHomePage);
 function loadHomePage() {
   strtPage.show();
-  console.log("bryh");
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
-  header.hide();
   $("doge").hide()
 }
 // from nav bar on click loads shop
 shopBtn.click(loadShopPage);
 function loadShopPage() {
   shopPage.show();
-  console.log("bruh");
   gamePage.hide();
   strtPage.hide();
-  header.hide();
   howtoPlayPage.hide();
   $("doge").hide()
 }
@@ -83,8 +79,6 @@ function loadHTPpge() {
   shopPage.hide();
   gamePage.hide();
   strtPage.hide();
-  header.hide();
-  console.log("bryh");
   $("doge").hide()
 }
 
@@ -92,12 +86,9 @@ function loadHTPpge() {
 dogeBtn.click(loadGod);
 function loadGod() {
   strtPage.hide();
-  console.log("bryh");
-
   gamePage.hide();
   shopPage.hide();
   howtoPlayPage.hide();
-  header.hide();
   $("<img>")
     .attr({
         id: "doge",
@@ -112,7 +103,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      twitterContainer()
       for (var i = 0; i < TWEETS; i++) {
         const {
           date,
@@ -130,20 +121,8 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
         } else {
           isVideo = 0;
         }
-        console.log(
-          date,
-          like_count,
-          media_link,
-          retweet_count,
-          status,
-          user_image_link,
-          user_name
-        );
         var conversionDate = new Date(date);
-        console.log(date);
-        console.log(conversionDate);
         conversionDate = conversionDate.toLocaleDateString("en-US");
-        console.log(conversionDate);
         twitterFeed(
           i,
           {
@@ -166,7 +145,6 @@ function cryptoTrends(CRYPTO_TREND_API) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       const { percent_change_15m, percent_change_1h, percent_change_24h } =
         data.quotes.USD;
       dogeTicker({ percent_change_15m, percent_change_1h, percent_change_24h });
@@ -266,7 +244,6 @@ function loadHashrate() {
 }
 //CONVERTS AND DISPLAYS UPDATED clickCount and usdConversion FROM LOCAL STORAGE
 function displayCurrentValues(clickCount, usdConversion) {
-  console.log(clickCount, usdConversion);
   usdConversion = parseFloat(usdConversion);
   $("#currentUSD").text(
     "Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS)
@@ -277,32 +254,31 @@ function displayCurrentValues(clickCount, usdConversion) {
 //TEST HEADER TO DISPLAY on.("click") FUNCTIONALITY, CAN BE DELETED ONCE GAME
 //PAGE HAS BEEN CREATED AND ID's CORRECTLY REFERENCED.
 function testHeader() {
-  $("<header>").attr({ id: "headerContainer" }).appendTo(document.body);
-  $("<h1>").attr({ id: "cryptoPrice" }).appendTo("#headerContainer");
+  $("<header>").attr({ id: "gamePage" }).appendTo(document.body);
+  $("<h1>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
   $("<h1>")
     .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
     .attr({ id: "currentUSD" })
-    .appendTo("#headerContainer");
+    .appendTo("#gamePage");
   $("<h2>")
     .text("Doge Coins:" + cryptoHeld)
     .attr({ id: "currentCrypto" })
-    .appendTo("#headerContainer");
+    .appendTo("#gamePage");
   $("<h1>")
     .text("ClickHere")
     .attr({ id: "increment" })
-    .appendTo("#headerContainer");
+    .appendTo("#gamePage");
   $("<h1>")
     .text("Convert to USD")
     .attr({ id: "convert" })
-    .appendTo("#headerContainer");
-  $("<h1>").text("Save").attr({ id: "save" }).appendTo("#headerContainer");
+    .appendTo("#gamePage");
+  $("<h1>").text("Save").attr({ id: "save" }).appendTo("#gamePage");
 }
-
+function twitterContainer() {
+  $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
+  $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
+}
 function twitterFeed(i, data, isVideo) {
-  console.log(data);
-  console.log(isVideo);
-  console.log(data.media_link);
-
   $("<div>")
     .attr({ id: "twitterContainer" + i, class: "card" })
     .appendTo("#marquee2");
@@ -346,7 +322,6 @@ function twitterFeed(i, data, isVideo) {
     .appendTo("#twitterContainer" + i);
 }
 function twitterMedia(i, data, isVideo) {
-  console.log(isVideo, data.media_link);
   if (isVideo == 1) {
     $("<img>").remove();
     $("<video>")
@@ -377,7 +352,6 @@ function twitterMedia(i, data, isVideo) {
     .appendTo("#twitterContainer" + i);
 }
 function twitterMedia(i, data, isVideo) {
-  console.log(isVideo, data.media_link);
   if (isVideo == 1) {
     $("<img>").remove();
     $("<video>")
@@ -408,9 +382,7 @@ function conversionAmount(currentPrice, cryptoHeld) {
 }
 //CONVERTED AMOUNT + TOTALUSD
 function conversionTotal(currentPrice, cryptoHeld) {
-  console.log(usdConversion);
   usdConversion += conversionAmount(currentPrice, cryptoHeld) * CONVERSION_RATE;
-  console.log(usdConversion);
   resetValues();
   return usdConversion;
 }
@@ -430,12 +402,8 @@ if (localStorage.length < SAVED_VARIABLES) {
   var DOGE_HASHRATE = 1.00
 } else {
   DOGE_HASHRATE = loadHashrate()
-  console.log(clickCount, usdConversion);
   loadCurrency(clickCount, usdConversion);
-
 }
-testHeader();
-cryptoTwitter(CRYPTO_TWITTER_API);
 cryptoTrends(CRYPTO_TREND_API);
 
 // setInterval(function(){
