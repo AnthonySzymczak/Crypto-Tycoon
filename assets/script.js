@@ -267,6 +267,10 @@ function loadGamePageContainer(DOGE_HASHRATE) {
     .text("Doge Coins:" + cryptoHeld)
     .attr({ id: "currentCrypto" })
     .appendTo("#gamePage");
+    $("<h1>")
+    .text("ClickHere")
+    .attr({ id: "increment" })
+    .appendTo("#gamePage");
 
   //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1  
   gameButtonContainer(DOGE_HASHRATE)
@@ -392,7 +396,7 @@ function resetValues() {
 if (localStorage.getItem("USD-held") == null && localStorage.getItem("crypto-held") == null && localStorage.getItem("hashRate") == null)  {
   var usdConversion = 0;
   var clickCount = 0;
-  var DOGE_HASHRATE = 1.00
+  var DOGE_HASHRATE = DOGE_HASHRATE;
   storeCurrency(clickCount,usdConversion,DOGE_HASHRATE)
 } else {
   loadCurrency(clickCount, usdConversion,DOGE_HASHRATE);
