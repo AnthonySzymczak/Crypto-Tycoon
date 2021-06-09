@@ -258,8 +258,10 @@ function displayCurrentValues(clickCount, usdConversion) {
 //PAGE HAS BEEN CREATED AND ID's CORRECTLY REFERENCED.
 function testHeader() {
   $("<header>").attr({ id: "gamePage" }).appendTo(document.body);
+
   $("<h3>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
   $("<h2>")
+
     .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
     .attr({ id: "currentUSD" })
     .appendTo("#gamePage");
@@ -271,6 +273,7 @@ function testHeader() {
     .text("ClickHere")
     .attr({ id: "increment" })
     .appendTo("#gamePage");
+
   //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1  
   gameButtonContainer()
 }
@@ -278,6 +281,7 @@ function gameButtonContainer(){
   $("<div>").attr({"id":"buttonContainer","class":"begin"}).appendTo("#gamePage")
   $("<button>").attr({"id":"convert", "class":"btn"}).text("Convert").appendTo("#buttonContainer")
   $("<button>").attr({"id":"save", "class":"btn"}).text("Save").appendTo("#buttonContainer")
+
 }
 function twitterContainer() {
   $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
@@ -407,7 +411,7 @@ if (localStorage.getItem("USD-held") == null && localStorage.getItem("crypto-hel
   var DOGE_HASHRATE = 1.00
   storeCurrency(clickCount,usdConversion,DOGE_HASHRATE)
 } else {
-  loadCurrency(clickCount, usdConversion,DOGE_HASHRATE);
+  (clickCount, usdConversion,DOGE_HASHRATE);
 }
 cryptoTrends(CRYPTO_TREND_API);
 
