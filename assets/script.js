@@ -338,36 +338,6 @@ function twitterMedia(i, data, isVideo) {
       .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
       .appendTo("#twitterContentContainer" + i);
   }
-
-  twitterMedia(i, data, isVideo);
-  $("<footer>")
-    .attr({ id: "twitterFooterContainer" + i, class: "card-footer" })
-    .appendTo("#twitterContainer" + i);
-  $("<p>")
-    .text("Retweets:" + data.retweet_count)
-    .attr({ id: "twitterRT" + i, class: "card-footer-item" })
-    .appendTo("#twitterFooterContainer" + i);
-  $("<p>")
-    .text("Likes:" + data.like_count)
-    .attr({ id: "twitterFooterLikes" + i, class: "card-footer-item" })
-    .appendTo("#twitterFooterContainer" + i);
-  $("<p>")
-    .text(data.conversionDate)
-    .attr({ id: "twitterFooterDate" + i, class: "card-footer" })
-    .appendTo("#twitterContainer" + i);
-}
-function twitterMedia(i, data, isVideo) {
-  if (isVideo == 1) {
-    $("<img>").remove();
-    $("<video>")
-      .attr({ id: "twitterVideo", class: "card-image", src: data.media_link })
-      .appendTo("#twitterContentContainer" + i);
-  } else if (isVideo == 0) {
-    $("<video>").remove();
-    $("<img>")
-      .attr({ id: "twitterImage", class: "card-image", src: data.media_link })
-      .appendTo("#twitterContentContainer" + i);
-  }
 }
 //UPDATES ON CLICK AMOUNT, FUTURE IMAGE REFERENCE
 function updateCount() {
@@ -400,7 +370,6 @@ function resetValues() {
 
 //CALLS TEST HEADER, LOADS DATA FROM LOCALSTORAGE AND BUTTONS FOR TEST HEADER
 //CHECKS IF LOCAL STORAGE POPULATED ELSE ZERO
-
 if (localStorage.getItem("USD-held") == null && localStorage.getItem("crypto-held") == null && localStorage.getItem("hashRate") == null)  {
   var usdConversion = 0;
   var clickCount = 0;
@@ -426,9 +395,6 @@ $("#convert").on("click", function (event) {
   cryptoToUSD(CRYPTO_USD_PRICE_API);
 });
 //SAVES usdConversion AND clickCount TO LOCAL STORAGE
-
-
-
 $("#save").on("click", function (event) {
   event.preventDefault();
   storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
