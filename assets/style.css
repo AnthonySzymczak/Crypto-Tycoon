@@ -125,7 +125,7 @@ html {
     color: black;
 }
 
-.shopbtn{
+#convert{
   color: black;
   padding: 15px 32px;
   display: inline-block;
@@ -136,7 +136,7 @@ html {
   vertical-align: middle;
   
 }
-.convertbtn{
+#save{
   color: black;
   padding: 15px 32px;
   display: inline-block;
