@@ -13,22 +13,10 @@
 
 <body>
   
-    <marquee id="marquee1" direction="left">
-        <img id="dogeTicker" src="./assets/images/Dogecoin-ticker.jpg" />
-        Price Changes - 15 Minutes:
-        <h3 id="innerMarquee15m"></h3>
-        1 Hour:
-        <h3 id="innerMarquee1h"></h3>
-        1 Day:
-
-        <h3 id="innerMarquee1d"></h3>
-        <img id="dogeTicker" src="./assets/images/Dogecoin-ticker.jpg" />
-
-
-    </marquee>
     <div class="hero">
         <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
+                <h1>Crypto-Tycoon</h1>
                 <a class="navbar-item" href="https://bulma.io">
                 </a>
 
@@ -38,11 +26,11 @@
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
+                
             </div>
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-
                     <a id="homeBtn" class="navbar-item">
                         Home
                     </a>
@@ -71,7 +59,17 @@
                 </div>
             </div>
         </nav>
-        <h1>Crypto-Tycoon</h1>
+        <marquee id="marquee1" direction="left">
+            <img id="dogeTicker" src="./assets/images/Dogecoin-ticker.jpg" />
+            Price Changes - 15 Minutes:
+            <h3 id="innerMarquee15m"></h3>
+            1 Hour:
+            <h3 id="innerMarquee1h"></h3>
+            1 Day:
+    
+            <h3 id="innerMarquee1d"></h3>
+            <img id="dogeTicker" src="./assets/images/Dogecoin-ticker.jpg" />
+        </marquee>
 <div id="dogeGod">
     <div class="container" id="crypto">
         <div class="center">
@@ -126,11 +124,17 @@
     </div>
 </div>
 </div>
-<aside class="asideContainer">
+<!-- <aside class="asideContainer">
     <marquee id="marquee2" class="grids row" direction="up">
     </marquee>
-</aside>
-
+</aside> -->
+<section class="begin">
+    <div class="begin:hover" >
+        
+        <button id="shop" class="btn">shop</button>
+        <button id="convert" class="btn">convert</button>
+    </div>
+</section>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
