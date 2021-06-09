@@ -24,6 +24,13 @@ p {
   display: block;
   text-align: center;
 }
+#gamePage p {
+  color:black;
+  font-size: medium;
+}
+#gamePage h2,h3 {
+  color: gold;
+}
 .row {
   white-space: pre-wrap;
   height: 80px;
