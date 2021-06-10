@@ -91,7 +91,7 @@ html {
 }
 .dogeCoin{
   height: auto;
-  width: 1.5vw;
+  width: 100%;
   border-radius: 5px;
 }
 .positiveChange {
@@ -140,9 +140,13 @@ html {
 }
 .grid-box{
   background-color: gold;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: solid 1px black;
   text-align: center;
   margin: 0px;
   height: 40px;
   width: 40px;
+  border-radius: 5px;
+}
+#gamePage{
+  background-color: blanchedalmond;
 }

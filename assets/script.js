@@ -402,11 +402,6 @@ cryptoTrends(CRYPTO_TREND_API);
 //     cryptoTrends(CRYPTO_TREND_API)
 // },15000)
 //INCREMENTS CRYPTOHELD
-$("#coin").on("click", function (event) {
-  event.preventDefault();
-  clickCount++;
-  updateCount(clickCount);
-});
 //CONVERTS CURRENT CRYPTOHELD TO USD
 $("#convert").on("click", function (event) {
   event.preventDefault();
@@ -420,24 +415,46 @@ $("#save").on("click", function (event) {
 
 function addClickerArea() {
   $("<div>")
-    .attr({
+  .attr({
       id: "clickerGrid",
       class: "grid-container",
     }).appendTo("#gamePage");
     
-for(var g=0 ;g<81 ;g++){
-
-  console.log("bruh")
+    for(var g=0 ;g<81 ;g++){
+  console.log("bruhs")
   $("<div>").attr({
     id: "grid-item"+g,
     class:"grid-box"
   }).appendTo("#clickerGrid")
   $("<img>")
-    .attr({
-      id: "coin"+g,
-      src: "./assets/images/Dogecoin-ticker.jpg",
-      class:"dogeCoin"
-    }).appendTo("#grid-item"+g)}};
-    clickPage.hide();
-    shopPage.hide();
-    HtpPage.hide();
+  .attr({
+    id: "coin"+g,
+    src: "./assets/images/Dogecoin-ticker.jpg",
+    class:"dogeCoin"
+  }).appendTo("#grid-item"+g);
+  $("#coin"+g).hide().on("click", function (event) {
+    event.preventDefault();
+    clickCount++;
+    updateCount(clickCount);
+    event.currentTarget.style.display="none"
+  })};
+}
+var randomArray=[]
+setInterval(function(){
+
+for(var i=0; i<81;i++ ){
+$("#coin"+i).show()
+randomArray[i]=getRandom(0,80)
+}
+for(var i=0; i<150;i++ ){
+  $("#coin"+randomArray[i]).hide()
+}
+},3000)
+
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+  clickPage.hide();
+  shopPage.hide();
+  HtpPage.hide();
+  
