@@ -1,7 +1,7 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  /* box-sizing: border-box; */
 }
 h1 {
   color: gold;
@@ -23,13 +23,6 @@ p {
   font-size: 25px;
   display: block;
   text-align: center;
-}
-#gamePage p {
-  color:black;
-  font-size: medium;
-}
-#gamePage h2,h3 {
-  color: gold;
 }
 .row {
   white-space: pre-wrap;
@@ -96,6 +89,11 @@ html {
   border-radius: 5px;
   margin: 5px;
 }
+.dogeCoin{
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+}
 .positiveChange {
   color: green;
 }
@@ -109,6 +107,11 @@ html {
   column-count: 4;
   padding: 0px;
 }
+#marquee2{
+height: 125px;
+width: 100%;
+}
+
 #marquee2 .card {
   margin-bottom: 20px;
 }
@@ -119,7 +122,9 @@ html {
   padding: 5px;
 }
 
-
+#marquee2{
+  height: 100px;
+}
 .dogedude {
   width: 400px;
   height: auto;
@@ -131,38 +136,19 @@ html {
 .asideContainer p{
     color: black;
 }
-
-#convert{
-  color: black;
-  padding: 15px 32px;
-  display: block;
-  font-size: 16px;
-  margin: auto;
-  background-color: gold;
-  border: 2px solid black;
-  text-align: center;
-  
+.grid-container{
+  display:flex;
+  flex-direction:row ;
+  flex-wrap: wrap;
+  margin: 0px;
+  justify-content:center
 }
-#save{
-  color: black;
-  padding: 15px 32px;
-  display: block;
-  font-size: 16px;
-  margin: auto;
+.grid-box{
   background-color: gold;
-  border: 2px solid black;
+  border: solid 1px black;
   text-align: center;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
 }
-
-.button{
-  color: black;
-  padding: 15px 32px;
-  display: block;
-  font-size: 16px;
-  margin: auto;
-  background-color: gold;
-  border: 2px solid black;
-  text-align: center;
-
-}
-
