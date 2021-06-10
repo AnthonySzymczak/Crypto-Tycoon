@@ -156,3 +156,13 @@ width: 100%;
   width: 40px;
   border-radius: 5px;
 }
+.button{
+  color: black;
+  padding: 15px 32px;
+  display: block;
+  font-size: 16px;
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
+  text-align: center;
+}
