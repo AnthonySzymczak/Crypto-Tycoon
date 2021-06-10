@@ -137,9 +137,9 @@ width: 100%;
     color: black;
 }
 .grid-container{
-  display:flex;
-  flex-direction:row ;
-  flex-wrap: wrap;
+  display:grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto; 
+  grid-template-rows: 40px 40px;
   margin: 0px;
   justify-content:center
 }
