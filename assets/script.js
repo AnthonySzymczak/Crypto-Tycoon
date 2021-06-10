@@ -213,20 +213,22 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     .then(function (data) {
       var currentPrice = data.DOGE.USD.toFixed(DECIMAL_POINTS);
       $("#cryptoPrice").text(
-        "The Current Price of Doge Coin is: $" + currentPrice + " per coin"
+        "Current Price: $" + currentPrice + " per coin"
       );
       $("#currentUSD").text("");
       $("#currentUSD").text(
-        "You have converted " +
+        "Converted " +
           cryptoHeld +
-          " Doge Coin to $" +
+          " to $" +
           conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          "\nYour Total is: $" +
+          " \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total: $" +
           conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          " Dollars with a 10% tax"
+          " with 10% tax"
       );
+      $("#currentCrypto").text("Doge Coins: " + cryptoHeld);
     });
 }
+
 //LOAD STORE SECTION, LOADS AND STORES clickCount AND usdConversion
 function storeCurrency() {
   localStorage.setItem("crypto-held", clickCount);
