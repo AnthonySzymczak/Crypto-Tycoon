@@ -128,22 +128,3 @@ function subtractUSD(event) {
     }
   
 }
-
-  let hash = parseFloat(elem.dataset.hash);
-  if (usdConversion < dollar + dollar * tax) {
-    // You cannot purchase this upgrade, you do not have enough money!;
-    return;
-  } else {
-    usdConversion -= dollar + dollar * tax;
-    localStorage.setItem("USD-held", usdConversion);
-    $("#currentUSD").text(
-      "Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS)
-    );
-    DOGE_HASHRATE += hash;
-    localStorage.setItem("hashRate", DOGE_HASHRATE);
-    console.log(DOGE_HASHRATE, hash);
-
-    elem.remove();
-  }
-}
-
