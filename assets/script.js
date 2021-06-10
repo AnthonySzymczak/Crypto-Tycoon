@@ -1,7 +1,7 @@
 //DOGE - DOGE COIN BTC - BITCOIN ETH - ETHEREUM
 //CONSTANTS
 const API_KEY =
-  "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
+"0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
 const CURRENCIES = "USD";
 const SAVED_VARIABLES = 2;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
@@ -9,6 +9,7 @@ const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
 const TWEETS = 3;
 const CONVERSION_RATE = 0.9;
+const backgroundsound = document.querySelector('#backgroundSound');
 //JQUERY ID REFERENCES CONTAINERS
 var clickPage = $("#gamePage");
 var shopPage = $("#shopContainer");
@@ -59,6 +60,9 @@ function loadGamePage() {
   shopPage.hide();
   $("#doge").hide();
   HtpPage.hide();
+  backgroundsound.play();
+  backgroundsound.loop = true;
+
 }
 //from nav bar on click loads homepage
 homeButton.click(loadHomePage);
@@ -513,3 +517,4 @@ clickPage.hide();
 shopPage.hide();
 HtpPage.hide();
 $("#doge").hide();
+
