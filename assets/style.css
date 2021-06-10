@@ -94,6 +94,10 @@ html {
   width: 100%;
   border-radius: 5px;
 }
+#currentHash {
+  color:black;
+  font-size: medium;
+}
 .positiveChange {
   color: green;
 }
