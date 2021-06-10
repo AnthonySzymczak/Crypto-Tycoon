@@ -10,6 +10,7 @@ const DECIMAL_POINTS = 2;
 const TWEETS = 3;
 const CONVERSION_RATE = 0.9;
 const backgroundsound = document.querySelector('#backgroundSound');
+backgroundsound.volume = 0.1;
 //JQUERY ID REFERENCES CONTAINERS
 var clickPage = $("#gamePage");
 var shopPage = $("#shopContainer");
