@@ -10,7 +10,6 @@ const sound = document.querySelector('#sound');
 
 
 
-
 let elem1 = document.getElementById("1");
 elem1.dataset.dollar = 125;
 elem1.dataset.hash = 0.5;
@@ -126,7 +125,7 @@ function subtractUSD(event) {
         localStorage.setItem("hashRate",DOGE_HASHRATE);
         console.log(DOGE_HASHRATE,hash);
         $("#currentHash").text("Current Hash Rate: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS) + " Hash Per Click")
-
+        $("#balance").text("$"+usdConversion.toFixed(DECIMAL_POINTS))
         sound.play();
         elem.remove();
 

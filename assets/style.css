@@ -3,7 +3,7 @@
   padding: 0px;
   /* box-sizing: border-box; */
 }
-h1 {
+h1,#balance {
   color: gold;
   font-weight: bold;
   display: center;
