@@ -11,6 +11,8 @@ const TWEETS = 3;
 const CONVERSION_RATE = 0.9;
 const backgroundsound = document.querySelector('#backgroundSound');
 backgroundsound.volume = 0.1;
+const borksound = document.querySelector('#bork');
+
 //JQUERY ID REFERENCES CONTAINERS
 var clickPage = $("#gamePage");
 var shopPage = $("#shopContainer");
@@ -40,7 +42,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
 }/twitter`;
 
 //VARIABLES USED FOR CONVERSION AND CLICKING
-var DOGE_HASHRATE = 1.0;
+var DOGE_HASHRATE = 100.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -490,6 +492,7 @@ function addClickerArea() {
         clickCount++;
         updateCount(clickCount);
         event.currentTarget.style.display = "none";
+        borksound.play();
       });
   }
 }
