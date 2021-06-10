@@ -45,3 +45,5 @@ and much much more!
 
 Link to deployed application.
 https://anthonyszymczak.github.io/Crypto-Tycoon/
+
+![crypto tycoon](https://user-images.githubusercontent.com/82052286/121594448-132b7c00-ca0b-11eb-92be-d6e80071aaeb.JPG)
