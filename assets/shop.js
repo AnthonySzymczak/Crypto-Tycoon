@@ -7,8 +7,6 @@
 
 const tax = 0.0725;
 
-
-
 let elem1 = document.getElementById("1");
 elem1.dataset.dollar = 125;
 elem1.dataset.hash = 0.5;
@@ -108,9 +106,9 @@ elem18.dataset.hash = 16.0;
 elem18.addEventListener("click", subtractUSD);
 
 function subtractUSD(event) {
-
   var elem = event.target;
   let dollar = parseInt(elem.dataset.dollar);
+
     let hash = parseFloat(elem.dataset.hash);
   if (usdConversion < (dollar +(dollar * tax))) {
       // You cannot purchase this upgrade, you do not have enough money!;
@@ -124,6 +122,7 @@ function subtractUSD(event) {
         localStorage.setItem("hashRate",DOGE_HASHRATE);
         console.log(DOGE_HASHRATE,hash);
         $("#currentHash").text("Current Hash Rate: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS) + " Hash Per Click")
+
         elem.remove();
 
     }
