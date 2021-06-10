@@ -6,6 +6,10 @@
 //-----------------------------------------------
 
 const tax = 0.0725;
+const sound = document.querySelector('#sound');
+
+
+
 
 let elem1 = document.getElementById("1");
 elem1.dataset.dollar = 125;
@@ -123,6 +127,7 @@ function subtractUSD(event) {
         console.log(DOGE_HASHRATE,hash);
         $("#currentHash").text("Current Hash Rate: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS) + " Hash Per Click")
 
+        sound.play();
         elem.remove();
 
     }

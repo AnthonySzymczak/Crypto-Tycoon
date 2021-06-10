@@ -1,7 +1,7 @@
 //DOGE - DOGE COIN BTC - BITCOIN ETH - ETHEREUM
 //CONSTANTS
 const API_KEY =
-  "0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
+"0a4a30fd69c551af6529573e0770da441e7496f29fade17e52b1b78e221a3444";
 const CURRENCIES = "USD";
 const SAVED_VARIABLES = 2;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
@@ -9,6 +9,10 @@ const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
 const TWEETS = 3;
 const CONVERSION_RATE = 0.9;
+const backgroundsound = document.querySelector('#backgroundSound');
+backgroundsound.volume = 0.1;
+const borksound = document.querySelector('#bork');
+
 //JQUERY ID REFERENCES CONTAINERS
 var clickPage = $("#gamePage");
 var shopPage = $("#shopContainer");
@@ -24,6 +28,8 @@ var HTPbutton = $("#HTPbtn");
 var dogeBtn = $("#superDoge");
 var navbarBtn =$("#navbarBtn");
 
+
+
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
   CRYPTOCURRENCIES_CONVERSION.split(",")[0]
@@ -36,7 +42,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
 }/twitter`;
 
 //VARIABLES USED FOR CONVERSION AND CLICKING
-var DOGE_HASHRATE = 1.0;
+var DOGE_HASHRATE = 100.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -57,6 +63,9 @@ function loadGamePage() {
   shopPage.hide();
   $("#doge").hide();
   HtpPage.hide();
+  backgroundsound.play();
+  backgroundsound.loop = true;
+
 }
 //from nav bar on click loads homepage
 homeButton.click(loadHomePage);
@@ -145,9 +154,9 @@ function cryptoTrends(CRYPTO_TREND_API) {
       return response.json();
     })
     .then(function (data) {
-      const { percent_change_15m, percent_change_1h, percent_change_24h } =
+      const { percent_change_15m, percent_change_1h, percent_change_24h, price} =
         data.quotes.USD;
-      dogeTicker({ percent_change_15m, percent_change_1h, percent_change_24h });
+      dogeTicker({ percent_change_15m, percent_change_1h, percent_change_24h, price});
     });
 }
 //POPULATES TICKER INFORMATION
@@ -155,6 +164,7 @@ function dogeTicker(data) {
   $("#innerMarquee15m").text(data.percent_change_15m + "%");
   $("#innerMarquee1h").text(data.percent_change_1h + "%");
   $("#innerMarquee1d").text(data.percent_change_24h + "%");
+  $("#currentPriceTicker").text(data.price.toFixed(5));
   if (data.percent_change_15m > 0) {
     $("#innerMarquee15m")
       .removeClass("negativeChange neutralChange")
@@ -205,20 +215,22 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     .then(function (data) {
       var currentPrice = data.DOGE.USD.toFixed(DECIMAL_POINTS);
       $("#cryptoPrice").text(
-        "The Current Price of Doge Coin is: $" + currentPrice + " per coin"
+        "Current Price: $" + currentPrice + " per coin"
       );
       $("#currentUSD").text("");
       $("#currentUSD").text(
-        "You have converted " +
+        "Converted " +
           cryptoHeld +
-          " Doge Coin to $" +
+          " to $" +
           conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          "\nYour Total is: $" +
+          " \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total: $" +
           conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          " Dollars with a 10% tax"
+          " with 10% tax"
       );
+      $("#currentCrypto").text("Doge Coins: " + cryptoHeld);
     });
 }
+
 //LOAD STORE SECTION, LOADS AND STORES clickCount AND usdConversion
 function storeCurrency() {
   localStorage.setItem("crypto-held", clickCount);
@@ -280,7 +292,7 @@ function loadGamePageContainer(DOGE_HASHRATE) {
 //CREATES SAVE AND CONVERT BUTTON, DISPLAYS CURRENT HASHRATE
 function gameButtonContainer(DOGE_HASHRATE) {
   $("<div>")
-    .attr({ id: "buttonContainer", class: "begin" })
+    .attr({ id: "buttonContainer", class: "" })
     .appendTo("#gamePage");
   $("<button>")
     .attr({ id: "convert", class: "btn" })
@@ -432,11 +444,12 @@ if (
 } else {
   loadCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 }
-cryptoTrends(CRYPTO_TREND_API);
 
-// setInterval(function(){
-//     cryptoTrends(CRYPTO_TREND_API)
-// },15000)
+cryptoTrends(CRYPTO_TREND_API);
+//Interval to update ticker
+setInterval(function(){
+    cryptoTrends(CRYPTO_TREND_API)
+},15000)
 
 //CONVERTS CURRENT CRYPTOHELD TO USD
 $("#convert").on("click", function (event) {
@@ -459,7 +472,6 @@ function addClickerArea() {
     .appendTo("#gamePage");
 
   for (var g = 0; g < 81; g++) {
-    console.log("bruhs");
     $("<div>")
       .attr({
         id: "grid-item" + g,
@@ -482,6 +494,7 @@ function addClickerArea() {
         clickCount++;
         updateCount(clickCount);
         event.currentTarget.style.display = "none";
+        borksound.play();
       });
   }
 }
@@ -511,3 +524,4 @@ clickPage.hide();
 shopPage.hide();
 HtpPage.hide();
 $("#doge").hide();
+
