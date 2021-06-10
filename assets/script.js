@@ -8,20 +8,19 @@ const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
 const TWEETS = 3;
-const CONVERSION_RATE = .90;
+const CONVERSION_RATE = 0.9;
 //JQUERY ID REFERENCES CONTAINERS
-var gamePage = $("#gamePage");
+var clickPage = $("#gamePage");
 var shopPage = $("#shopContainer");
 var strtPage = $("#crypto");
-var howtoPlayPage = $("#howToPlaypge");
+var HtpPage = $("#howToPlaypge");
 var dogeContainer = $("#dogeGod");
 //JQUERY ID REFERENCES BTNS
 var strtbtn = $("#startGame");
-var shopBtn = $("#shopBtn");
-var homeBtn = $("#homeBtn");
-var HTPbtn = $("#HTPbtn");
+var shopButton = $("#shopBtn");
+var homeButton = $("#homeBtn");
+var HTPbutton = $("#HTPbtn");
 var dogeBtn = $("#superDoge");
-
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
@@ -38,60 +37,58 @@ var DOGE_HASHRATE = 1.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
-testHeader();
 cryptoTwitter(CRYPTO_TWITTER_API);
+testHeader();
 //on load displays homepage and hides other pages
-gamePage.hide();
-shopPage.hide();
-howtoPlayPage.hide();
+
 // on click loads game page
 strtbtn.click(loadGamePage);
 function loadGamePage() {
   strtPage.hide();
 
-  gamePage.show();
+  clickPage.show();
   shopPage.hide();
-  $("doge").hide()
-  howtoPlayPage.hide();
+  $("doge").hide();
+  HtpPage.hide();
 }
 //from nav bar on click loads homepage
-homeBtn.click(loadHomePage);
+homeButton.click(loadHomePage);
 function loadHomePage() {
   strtPage.show();
-  gamePage.hide();
+  clickPage.hide();
   shopPage.hide();
-  howtoPlayPage.hide();
-  $("doge").hide()
+  HtpPage.hide();
+  $("doge").hide();
 }
 // from nav bar on click loads shop
-shopBtn.click(loadShopPage);
+shopButton.click(loadShopPage);
 function loadShopPage() {
   shopPage.show();
-  gamePage.hide();
+  clickPage.hide();
   strtPage.hide();
-  howtoPlayPage.hide();
-  $("doge").hide()
+  HtpPage.hide();
+  $("doge").hide();
 }
 //nav bar on click loads HTP page
-HTPbtn.click(loadHTPpge);
+HTPbutton.click(loadHTPpge);
 function loadHTPpge() {
-  howtoPlayPage.show();
+  HtpPage.show();
   shopPage.hide();
-  gamePage.hide();
+  clickPage.hide();
   strtPage.hide();
-  $("doge").hide()
+  $("doge").hide();
 }
 
 //loads god
 dogeBtn.click(loadGod);
 function loadGod() {
   strtPage.hide();
-  gamePage.hide();
+  clickPage.hide();
   shopPage.hide();
-  howtoPlayPage.hide();
+  HtpPage.hide();
   $("<img>")
     .attr({
-        id: "doge",
+      id: "doge",
       src: "./assets/imagesDogedudefrontpage.jpg",
     })
     .appendTo("#dogeGod");
@@ -103,7 +100,7 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
       return response.json();
     })
     .then(function (data) {
-      twitterContainer()
+      // twitterContainer();
       for (var i = 0; i < TWEETS; i++) {
         const {
           date,
@@ -228,7 +225,7 @@ function loadCurrency() {
   clickCount = loadClicks();
   usdConversion = loadUSDConversion();
   DOGE_HASHRATE = loadHashRate();
-  console.log(clickCount,usdConversion)
+  console.log(clickCount, usdConversion);
   displayCurrentValues(clickCount, usdConversion);
 }
 function loadClicks() {
@@ -257,36 +254,41 @@ function displayCurrentValues(clickCount, usdConversion) {
 //TEST HEADER TO DISPLAY on.("click") FUNCTIONALITY, CAN BE DELETED ONCE GAME
 //PAGE HAS BEEN CREATED AND ID's CORRECTLY REFERENCED.
 function testHeader() {
-  $("<header>").attr({ id: "gamePage" }).appendTo(document.body);
-
   $("<h3>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
   $("<h2>")
-
-    .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
-    .attr({ id: "currentUSD" })
-    .appendTo("#gamePage");
+  .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
+  .attr({ id: "currentUSD" })
+  .appendTo("#gamePage");
   $("<h2>")
-    .text("Doge Coins:" + cryptoHeld)
-    .attr({ id: "currentCrypto" })
-    .appendTo("#gamePage");
-  $("<h1>")
-    .text("ClickHere")
-    .attr({ id: "increment" })
-    .appendTo("#gamePage");
+  .text("Doge Coins:" + cryptoHeld)
+  .attr({ id: "currentCrypto" })
+  .appendTo("#gamePage");
+  addClickerArea()
 
-  //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1  
-  gameButtonContainer()
+  //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1
+  gameButtonContainer();
 }
-function gameButtonContainer(){
-  $("<div>").attr({"id":"buttonContainer","class":"begin"}).appendTo("#gamePage")
-  $("<button>").attr({"id":"convert", "class":"btn"}).text("Convert").appendTo("#buttonContainer")
-  $("<button>").attr({"id":"save", "class":"btn"}).text("Save").appendTo("#buttonContainer")
-
+function gameButtonContainer() {
+  $("<div>")
+    .attr({ id: "buttonContainer", class: "begin" })
+    .appendTo("#gamePage");
+  $("<button>")
+    .attr({ id: "convert", class: "btn" })
+    .text("Convert")
+    .appendTo("#buttonContainer");
+  $("<button>")
+    .attr({ id: "save", class: "btn" })
+    .text("Save")
+    .appendTo("#buttonContainer");
 }
-function twitterContainer() {
-  $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
-  $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
-}
+// function twitterContainer() {
+//   $("<aside>")
+//     .attr({ id: "aside", class: "asideContainer" })
+//     .appendTo("#gamePage");
+//   $("<marquee>")
+//     .attr({ id: "marquee2", class: "grids row", direction: "up" })
+//     .appendTo("#aside");
+// }
 function twitterFeed(i, data, isVideo) {
   $("<div>")
     .attr({ id: "twitterContainer" + i, class: "card" })
@@ -334,12 +336,20 @@ function twitterMedia(i, data, isVideo) {
   if (isVideo == 1) {
     $("<img>").remove();
     $("<video>")
-      .attr({ id: "twitterVideo", class: "card-image center", src: data.media_link })
+      .attr({
+        id: "twitterVideo",
+        class: "card-image center",
+        src: data.media_link,
+      })
       .appendTo("#twitterContentContainer" + i);
   } else if (isVideo == 0) {
     $("<video>").remove();
     $("<img>")
-      .attr({ id: "twitterImage", class: "card-image center", src: data.media_link })
+      .attr({
+        id: "twitterImage",
+        class: "card-image center",
+        src: data.media_link,
+      })
       .appendTo("#twitterContentContainer" + i);
   }
 }
@@ -374,13 +384,17 @@ function resetValues() {
 
 //CALLS TEST HEADER, LOADS DATA FROM LOCALSTORAGE AND BUTTONS FOR TEST HEADER
 //CHECKS IF LOCAL STORAGE POPULATED ELSE ZERO
-if (localStorage.getItem("USD-held") == null && localStorage.getItem("crypto-held") == null && localStorage.getItem("hashRate") == null)  {
+if (
+  localStorage.getItem("USD-held") == null &&
+  localStorage.getItem("crypto-held") == null &&
+  localStorage.getItem("hashRate") == null
+) {
   var usdConversion = 0;
   var clickCount = 0;
-  var DOGE_HASHRATE = 1.00
-  storeCurrency(clickCount,usdConversion,DOGE_HASHRATE)
+  var DOGE_HASHRATE = 1.0;
+  storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 } else {
-  (clickCount, usdConversion,DOGE_HASHRATE);
+ loadCurrency( clickCount, usdConversion, DOGE_HASHRATE);
 }
 cryptoTrends(CRYPTO_TREND_API);
 
@@ -388,7 +402,7 @@ cryptoTrends(CRYPTO_TREND_API);
 //     cryptoTrends(CRYPTO_TREND_API)
 // },15000)
 //INCREMENTS CRYPTOHELD
-$("#increment").on("click", function (event) {
+$("#coin").on("click", function (event) {
   event.preventDefault();
   clickCount++;
   updateCount(clickCount);
@@ -403,3 +417,27 @@ $("#save").on("click", function (event) {
   event.preventDefault();
   storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 });
+
+function addClickerArea() {
+  $("<div>")
+    .attr({
+      id: "clickerGrid",
+      class: "grid-container",
+    }).appendTo("#gamePage");
+    
+for(var g=0 ;g<81 ;g++){
+
+  console.log("bruh")
+  $("<div>").attr({
+    id: "grid-item"+g,
+    class:"grid-box"
+  }).appendTo("#clickerGrid")
+  $("<img>")
+    .attr({
+      id: "coin"+g,
+      src: "./assets/images/Dogecoin-ticker.jpg",
+      class:"dogeCoin"
+    }).appendTo("#grid-item"+g)}};
+    clickPage.hide();
+    shopPage.hide();
+    HtpPage.hide();

@@ -1,7 +1,7 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  /* box-sizing: border-box; */
 }
 h1 {
   color: gold;
@@ -89,6 +89,11 @@ html {
   border-radius: 5px;
   margin: 5px;
 }
+.dogeCoin{
+  height: auto;
+  width: 1.5vw;
+  border-radius: 5px;
+}
 .positiveChange {
   color: green;
 }
@@ -125,4 +130,19 @@ html {
 
 .asideContainer p{
     color: black;
+}
+.grid-container{
+  display:flex;
+  flex-direction:row ;
+  flex-wrap: wrap;
+  margin: 0px;
+  justify-content:center
+}
+.grid-box{
+  background-color: gold;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  text-align: center;
+  margin: 0px;
+  height: 40px;
+  width: 40px;
 }
