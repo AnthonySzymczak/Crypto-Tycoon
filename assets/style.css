@@ -43,7 +43,7 @@ p {
   font-size: 16px;
   margin: auto;
   background-color: gold;
-  border: 2px solid black;
+  ;
 }
 
 .btn {
@@ -172,4 +172,28 @@ width: 100%;
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none;
+}
+#currentCrypto{
+  font-weight: bold;
+  color: gold;
+  font-size: 25px;
+}
+
+#currentUSD{
+  font-weight: bold;
+  color: gold;
+  font-size: 25px;
+
+}
+
+#cryptoPrice{
+  font-weight: bold;
+  color: gold;
+  font-size: 25px;
+}
+
+h2{
+  font-weight: bold;
+  color: gold;
+  font-size: 20px;
 }
