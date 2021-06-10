@@ -280,7 +280,7 @@ function loadGamePageContainer(DOGE_HASHRATE) {
 //CREATES SAVE AND CONVERT BUTTON, DISPLAYS CURRENT HASHRATE
 function gameButtonContainer(DOGE_HASHRATE) {
   $("<div>")
-    .attr({ id: "buttonContainer", class: "begin" })
+    .attr({ id: "buttonContainer", class: "" })
     .appendTo("#gamePage");
   $("<button>")
     .attr({ id: "convert", class: "btn" })
