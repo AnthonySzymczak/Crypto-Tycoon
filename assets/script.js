@@ -454,7 +454,7 @@ function addClickerArea() {
   $("<div>")
     .attr({
       id: "clickerGrid",
-      class: "grid-container",
+      class: "grid-container disable-select",
     })
     .appendTo("#gamePage");
 
@@ -463,14 +463,14 @@ function addClickerArea() {
     $("<div>")
       .attr({
         id: "grid-item" + g,
-        class: "grid-box",
+        class: "grid-box disable-select",
       })
       .appendTo("#clickerGrid");
     $("<img>")
       .attr({
         id: "coin" + g,
         src: "./assets/images/Dogecoin-ticker.jpg",
-        class: "dogeCoin",
+        class: "dogeCoin disable-select",
       })
       //Hides coin images
       .appendTo("#grid-item" + g);
