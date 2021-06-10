@@ -39,7 +39,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
 }/twitter`;
 
 //VARIABLES USED FOR CONVERSION AND CLICKING
-var DOGE_HASHRATE = 1000.0;
+var DOGE_HASHRATE = 1.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
