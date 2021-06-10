@@ -41,3 +41,7 @@ Now we ask you all to please remember this is our first version release, once we
 3) multiple shop's and different upgrades
 4) An in-game map
 and much much more!
+
+
+Link to deployed application.
+https://anthonyszymczak.github.io/Crypto-Tycoon/

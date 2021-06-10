@@ -24,6 +24,8 @@ var HTPbutton = $("#HTPbtn");
 var dogeBtn = $("#superDoge");
 var navbarBtn =$("#navbarBtn");
 
+
+
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
   CRYPTOCURRENCIES_CONVERSION.split(",")[0]
@@ -36,7 +38,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
 }/twitter`;
 
 //VARIABLES USED FOR CONVERSION AND CLICKING
-var DOGE_HASHRATE = 1.0;
+var DOGE_HASHRATE = 1000.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
