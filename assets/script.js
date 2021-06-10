@@ -43,7 +43,8 @@ loadGamePageContainer(DOGE_HASHRATE);
 //on load displays homepage and hides other pages
 gamePage.hide();
 shopPage.hide();
-howtoPlayPage.hide();
+howtoPlayPage.hide(); 
+cryptoTwitter(CRYPTO_TWITTER_API);
 // on click loads game page
 strtbtn.click(loadGamePage);
 function loadGamePage() {
@@ -256,8 +257,6 @@ function displayCurrentValues(clickCount, usdConversion,DOGE_HASHRATE) {
 }
 //gamePage LOADS GAME ELEMENTS DYNAMICALLY
 function loadGamePageContainer(DOGE_HASHRATE) {
-  $("<section>").attr({ id: "gamePage" }).appendTo(document.body);
-
   $("<h3>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
   $("<h2>")
     .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
@@ -274,7 +273,7 @@ function loadGamePageContainer(DOGE_HASHRATE) {
 
   //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1  
   gameButtonContainer(DOGE_HASHRATE)
-  cryptoTwitter(CRYPTO_TWITTER_API);
+
 }
 
 //CREATES SAVE AND CONVERT BUTTON, DISPLAYS CURRENT HASHRATE
@@ -300,11 +299,11 @@ function savingBtn(){
     }
   })
 }
-//CREATES CONTAINER FOR THE TWITTER MARQUEE
-function twitterContainer() {
-  $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
-  $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
-}
+// //CREATES CONTAINER FOR THE TWITTER MARQUEE
+// function twitterContainer() {
+//   $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
+//   $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
+// }
 //CREATES TWITTER FEED 
 function twitterFeed(i, data, isVideo) {
   $("<div>")
