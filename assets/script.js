@@ -15,12 +15,14 @@ var shopPage = $("#shopContainer");
 var strtPage = $("#crypto");
 var HtpPage = $("#howToPlaypge");
 var dogeContainer = $("#dogeGod");
+var navbar = $("#navbarBasicExample")
 //JQUERY ID REFERENCES BTNS
 var strtbtn = $("#startGame");
 var shopButton = $("#shopBtn");
 var homeButton = $("#homeBtn");
 var HTPbutton = $("#HTPbtn");
 var dogeBtn = $("#superDoge");
+var navbarBtn =$("#navbarBtn");
 
 //API KEYS, APIs USED, Cryptocompare, Coinpaprika
 var CRYPTO_USD_PRICE_API = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${
@@ -40,7 +42,12 @@ var cryptoHeld = 0;
 var clickCount = 0;
 //LOADS #gamePage
 loadGamePageContainer(DOGE_HASHRATE);
-//on load displays homepage and hides other pages
+//toggle Buuton for nav 
+navbarBtn.click(toggleNav)
+function toggleNav(){
+  navbarBtn.toggleClass(" is-active")
+  navbar.toggleClass("is-active")
+}
 
 // on click loads game page
 strtbtn.click(loadGamePage);
@@ -48,7 +55,7 @@ function loadGamePage() {
   strtPage.hide();
   clickPage.show();
   shopPage.hide();
-  $("doge").hide();
+  $("#doge").hide();
   HtpPage.hide();
 }
 //from nav bar on click loads homepage
@@ -58,7 +65,7 @@ function loadHomePage() {
   clickPage.hide();
   shopPage.hide();
   HtpPage.hide();
-  $("doge").hide();
+  $("#doge").hide();
 }
 // from nav bar on click loads shop
 shopButton.click(loadShopPage);
@@ -67,7 +74,7 @@ function loadShopPage() {
   clickPage.hide();
   strtPage.hide();
   HtpPage.hide();
-  $("doge").hide();
+  $("#doge").hide();
 }
 //nav bar on click loads HTP page
 HTPbutton.click(loadHTPpge);
@@ -76,7 +83,7 @@ function loadHTPpge() {
   shopPage.hide();
   clickPage.hide();
   strtPage.hide();
-  $("doge").hide();
+  $("#doge").hide();
 }
 
 //loads god
@@ -86,12 +93,7 @@ function loadGod() {
   clickPage.hide();
   shopPage.hide();
   HtpPage.hide();
-  $("<img>")
-    .attr({
-      id: "doge",
-      src: "./assets/imagesDogedudefrontpage.jpg",
-    })
-    .appendTo("#dogeGod");
+$("#doge").show()
 }
 //USES COINPAPRIKA TO LOAD LATEST TWITTER FEED
 function cryptoTwitter(CRYPTO_TWITTER_API) {
@@ -435,7 +437,7 @@ cryptoTrends(CRYPTO_TREND_API);
 // setInterval(function(){
 //     cryptoTrends(CRYPTO_TREND_API)
 // },15000)
-//INCREMENTS CRYPTOHELD
+
 //CONVERTS CURRENT CRYPTOHELD TO USD
 $("#convert").on("click", function (event) {
   event.preventDefault();
@@ -447,7 +449,7 @@ $("#save").on("click", function (event) {
   savingBtn();
   storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 });
-
+//Appends clicker grid and its boxes
 function addClickerArea() {
   $("<div>")
     .attr({
@@ -470,9 +472,11 @@ function addClickerArea() {
         src: "./assets/images/Dogecoin-ticker.jpg",
         class: "dogeCoin",
       })
+      //Hides coin images
       .appendTo("#grid-item" + g);
     $("#coin" + g)
       .hide()
+      //INCREMENTS CRYPTOHELD
       .on("click", function (event) {
         event.preventDefault();
         clickCount++;
@@ -481,6 +485,7 @@ function addClickerArea() {
       });
   }
 }
+//shows coin imgs at random
 var randomArray = [];
 setInterval(function () {
   for (var i = 0; i < 81; i++) {
@@ -495,6 +500,14 @@ setInterval(function () {
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+//on load displays homepage and hides other pages
+$("<img>")
+.attr({
+  id: "doge",
+  src: "./assets/images/Dogedudefrontpage.jpg",
+})
+.appendTo("#dogeGod");
 clickPage.hide();
 shopPage.hide();
 HtpPage.hide();
+$("#doge").hide();
