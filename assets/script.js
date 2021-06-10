@@ -11,6 +11,8 @@ const TWEETS = 3;
 const CONVERSION_RATE = 0.9;
 const backgroundsound = document.querySelector('#backgroundSound');
 backgroundsound.volume = 0.1;
+const borksound = document.querySelector('#bork');
+
 //JQUERY ID REFERENCES CONTAINERS
 var clickPage = $("#gamePage");
 var shopPage = $("#shopContainer");
@@ -40,7 +42,7 @@ var CRYPTO_TWITTER_API = `https://api.coinpaprika.com/v1/coins/${
 }/twitter`;
 
 //VARIABLES USED FOR CONVERSION AND CLICKING
-var DOGE_HASHRATE = 1.0;
+var DOGE_HASHRATE = 100.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
@@ -213,20 +215,22 @@ function cryptoToUSD(CRYPTO_USD_PRICE_API) {
     .then(function (data) {
       var currentPrice = data.DOGE.USD.toFixed(DECIMAL_POINTS);
       $("#cryptoPrice").text(
-        "The Current Price of Doge Coin is: $" + currentPrice + " per coin"
+        "Current Price: $" + currentPrice + " per coin"
       );
       $("#currentUSD").text("");
       $("#currentUSD").text(
-        "You have converted " +
+        "Converted " +
           cryptoHeld +
-          " Doge Coin to $" +
+          " to $" +
           conversionAmount(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          "\nYour Total is: $" +
+          " \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Total: $" +
           conversionTotal(currentPrice, cryptoHeld).toFixed(DECIMAL_POINTS) +
-          " Dollars with a 10% tax"
+          " with 10% tax"
       );
+      $("#currentCrypto").text("Doge Coins: " + cryptoHeld);
     });
 }
+
 //LOAD STORE SECTION, LOADS AND STORES clickCount AND usdConversion
 function storeCurrency() {
   localStorage.setItem("crypto-held", clickCount);
@@ -490,6 +494,7 @@ function addClickerArea() {
         clickCount++;
         updateCount(clickCount);
         event.currentTarget.style.display = "none";
+        borksound.play();
       });
   }
 }
