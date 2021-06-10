@@ -125,7 +125,7 @@ function subtractUSD(event) {
         DOGE_HASHRATE += hash;
         localStorage.setItem("hashRate",DOGE_HASHRATE);
         console.log(DOGE_HASHRATE,hash);
-        
+        <Audio></Audio>
         elem.remove();
 
     }
