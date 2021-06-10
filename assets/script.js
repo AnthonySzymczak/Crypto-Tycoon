@@ -89,6 +89,7 @@ function loadShopPage() {
   strtPage.hide();
   HtpPage.hide();
   $("#doge").hide();
+  $("#balance").text("$"+usdConversion.toFixed(DECIMAL_POINTS))
 }
 //nav bar on click loads HTP page
 HTPbutton.click(loadHTPpge);
