@@ -183,7 +183,7 @@ width: 100%;
 
 .button{
   color: black;
-  padding: 15px 32px;
+  padding: 5px;
   display: block;
   font-size: 16px;
   margin: auto;
@@ -239,4 +239,20 @@ h2{
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+#shopContainer{
+  margin-bottom:10px;
+}
+#shopContainer div {
+  display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 35px;
+}
+#shopContainer h2 {
+  text-align: center;
+}
+#gamePage,#shopContainer {
+  background: black;
+    border-style: groove;
 }
