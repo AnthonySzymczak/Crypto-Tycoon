@@ -27,6 +27,7 @@ var homeButton = $("#homeBtn");
 var HTPbutton = $("#HTPbtn");
 var dogeBtn = $("#superDoge");
 var navbarBtn =$("#navbarBtn");
+var backToGameBtn =$("#gameBtn")
 
 
 
@@ -46,6 +47,8 @@ var DOGE_HASHRATE = 100.0;
 var usdConversion = 0;
 var cryptoHeld = 0;
 var clickCount = 0;
+
+
 //LOADS #gamePage
 loadGamePageContainer(DOGE_HASHRATE);
 //toggle Buuton for nav 
@@ -54,6 +57,8 @@ function toggleNav(){
   navbarBtn.toggleClass(" is-active")
   navbar.toggleClass("is-active")
 }
+//on click loads game page from nav bar
+backToGameBtn.click(loadGamePage)
 
 // on click loads game page
 strtbtn.click(loadGamePage);
