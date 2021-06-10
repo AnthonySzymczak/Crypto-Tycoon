@@ -152,9 +152,9 @@ function cryptoTrends(CRYPTO_TREND_API) {
       return response.json();
     })
     .then(function (data) {
-      const { percent_change_15m, percent_change_1h, percent_change_24h } =
+      const { percent_change_15m, percent_change_1h, percent_change_24h, price} =
         data.quotes.USD;
-      dogeTicker({ percent_change_15m, percent_change_1h, percent_change_24h });
+      dogeTicker({ percent_change_15m, percent_change_1h, percent_change_24h, price});
     });
 }
 //POPULATES TICKER INFORMATION
@@ -162,6 +162,7 @@ function dogeTicker(data) {
   $("#innerMarquee15m").text(data.percent_change_15m + "%");
   $("#innerMarquee1h").text(data.percent_change_1h + "%");
   $("#innerMarquee1d").text(data.percent_change_24h + "%");
+  $("#currentPriceTicker").text(data.price.toFixed(5));
   if (data.percent_change_15m > 0) {
     $("#innerMarquee15m")
       .removeClass("negativeChange neutralChange")
@@ -439,11 +440,12 @@ if (
 } else {
   loadCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 }
-cryptoTrends(CRYPTO_TREND_API);
 
-// setInterval(function(){
-//     cryptoTrends(CRYPTO_TREND_API)
-// },15000)
+cryptoTrends(CRYPTO_TREND_API);
+//Interval to update ticker
+setInterval(function(){
+    cryptoTrends(CRYPTO_TREND_API)
+},15000)
 
 //CONVERTS CURRENT CRYPTOHELD TO USD
 $("#convert").on("click", function (event) {
@@ -466,7 +468,6 @@ function addClickerArea() {
     .appendTo("#gamePage");
 
   for (var g = 0; g < 81; g++) {
-    console.log("bruhs");
     $("<div>")
       .attr({
         id: "grid-item" + g,

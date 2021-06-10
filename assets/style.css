@@ -107,6 +107,9 @@ html {
 .neutralChange {
   color: gray;
 }
+#currentPriceTicker {
+  color: #c7eeff;
+}
 .column {
   column-count: 4;
   padding: 0px;
