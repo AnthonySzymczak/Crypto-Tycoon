@@ -227,7 +227,7 @@ function loadCurrency() {
   clickCount = loadClicks();
   usdConversion = loadUSDConversion();
   DOGE_HASHRATE = loadHashRate();
-  displayCurrentValues(clickCount, usdConversion,DOGE_HASHRATE);
+  displayCurrentValues(clickCount, usdConversion, DOGE_HASHRATE);
 }
 function loadClicks() {
   var clickCount = localStorage.getItem("crypto-held");
@@ -244,14 +244,18 @@ function loadHashRate() {
   return DOGE_HASHRATE;
 }
 //CONVERTS AND DISPLAYS UPDATED clickCount and usdConversion FROM LOCAL STORAGE
-function displayCurrentValues(clickCount, usdConversion,DOGE_HASHRATE) {
+function displayCurrentValues(clickCount, usdConversion, DOGE_HASHRATE) {
   usdConversion = parseFloat(usdConversion);
   $("#currentUSD").text(
     "Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS)
   );
   cryptoHeld = convertDoge(clickCount);
   $("#currentCrypto").text("Doge Coins:" + cryptoHeld);
-  $("#currentHash").text("Current Hash Rate: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS) + " Hash Per Click")
+  $("#currentHash").text(
+    "Current Hash Rate: " +
+      DOGE_HASHRATE.toFixed(DECIMAL_POINTS) +
+      " Hash Per Click"
+  );
 }
 //gamePage LOADS GAME ELEMENTS DYNAMICALLY
 function loadGamePageContainer(DOGE_HASHRATE) {
@@ -264,42 +268,60 @@ function loadGamePageContainer(DOGE_HASHRATE) {
     .text("Doge Coins:" + cryptoHeld)
     .attr({ id: "currentCrypto" })
     .appendTo("#gamePage");
-    addClickerArea()
+  addClickerArea();
 
-  //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1  
-  gameButtonContainer(DOGE_HASHRATE)
+  //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1
+  gameButtonContainer(DOGE_HASHRATE);
   cryptoTwitter(CRYPTO_TWITTER_API);
 }
 
 //CREATES SAVE AND CONVERT BUTTON, DISPLAYS CURRENT HASHRATE
-function gameButtonContainer(DOGE_HASHRATE){
-  $("<div>").attr({"id":"buttonContainer","class":"begin"}).appendTo("#gamePage")
-  $("<button>").attr({"id":"convert", "class":"btn"}).text("Convert").appendTo("#buttonContainer")
-  $("<button>").attr({"id":"save", "class":"btn"}).text("Save").appendTo("#buttonContainer")
-  $("<p>").attr({"id":"currentHash","class":""}).text("Current Hash Rate: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS) + " Hash Per Click").appendTo("#buttonContainer")
+function gameButtonContainer(DOGE_HASHRATE) {
+  $("<div>")
+    .attr({ id: "buttonContainer", class: "begin" })
+    .appendTo("#gamePage");
+  $("<button>")
+    .attr({ id: "convert", class: "btn" })
+    .text("Convert")
+    .appendTo("#buttonContainer");
+  $("<button>")
+    .attr({ id: "save", class: "btn" })
+    .text("Save")
+    .appendTo("#buttonContainer");
+  $("<p>")
+    .attr({ id: "currentHash", class: "" })
+    .text(
+      "Current Hash Rate: " +
+        DOGE_HASHRATE.toFixed(DECIMAL_POINTS) +
+        " Hash Per Click"
+    )
+    .appendTo("#buttonContainer");
 }
 //SHOWS SAVING TO INDICATE CLICKED
-function savingBtn(){
+function savingBtn() {
   var count = 0;
-  $("#save").text("Saving..")
-  var timeInterval1 = setInterval(function(){
-    count++
-    if(count == 3)
-    {
-    clearInterval(timeInterval1)
-    var timeInterval2 = setInterval(function(){
-      clearInterval(timeInterval2)
-      $("#save").text("Save")
-    },2000)
+  $("#save").text("Saving..");
+  var timeInterval1 = setInterval(function () {
+    count++;
+    if (count == 3) {
+      clearInterval(timeInterval1);
+      var timeInterval2 = setInterval(function () {
+        clearInterval(timeInterval2);
+        $("#save").text("Save");
+      }, 2000);
     }
-  })
+  });
 }
 //CREATES CONTAINER FOR THE TWITTER MARQUEE
 function twitterContainer() {
-  $("<aside>").attr({"id":"aside","class":"asideContainer"}).appendTo("#gamePage")
-  $("<marquee>").attr({"id":"marquee2","class":"grids row","direction":"up"}).appendTo("#aside")
+  $("<aside>")
+    .attr({ id: "aside", class: "asideContainer" })
+    .appendTo("#gamePage");
+  $("<marquee>")
+    .attr({ id: "marquee2", class: "grids row", direction: "up" })
+    .appendTo("#aside");
 }
-//CREATES TWITTER FEED 
+//CREATES TWITTER FEED
 function twitterFeed(i, data, isVideo) {
   $("<div>")
     .attr({ id: "twitterContainer" + i, class: "card" })
@@ -404,9 +426,9 @@ if (
   var usdConversion = 0;
   var clickCount = 0;
   var DOGE_HASHRATE = DOGE_HASHRATE;
-  storeCurrency(clickCount,usdConversion,DOGE_HASHRATE)
+  storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 } else {
-  loadCurrency(clickCount, usdConversion,DOGE_HASHRATE);
+  loadCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 }
 cryptoTrends(CRYPTO_TREND_API);
 
@@ -422,52 +444,57 @@ $("#convert").on("click", function (event) {
 //SAVES usdConversion AND clickCount TO LOCAL STORAGE
 $("#save").on("click", function (event) {
   event.preventDefault();
-  savingBtn()
+  savingBtn();
   storeCurrency(clickCount, usdConversion, DOGE_HASHRATE);
 });
 
 function addClickerArea() {
   $("<div>")
-  .attr({
+    .attr({
       id: "clickerGrid",
       class: "grid-container",
-    }).appendTo("#gamePage");
-    
-    for(var g=0 ;g<81 ;g++){
-  console.log("bruhs")
-  $("<div>").attr({
-    id: "grid-item"+g,
-    class:"grid-box"
-  }).appendTo("#clickerGrid")
-  $("<img>")
-  .attr({
-    id: "coin"+g,
-    src: "./assets/images/Dogecoin-ticker.jpg",
-    class:"dogeCoin"
-  }).appendTo("#grid-item"+g);
-  $("#coin"+g).hide().on("click", function (event) {
-    event.preventDefault();
-    clickCount++;
-    updateCount(clickCount);
-    event.currentTarget.style.display="none"
-  })};
-}
-var randomArray=[]
-setInterval(function(){
+    })
+    .appendTo("#gamePage");
 
-for(var i=0; i<81;i++ ){
-$("#coin"+i).show()
-randomArray[i]=getRandom(0,80)
+  for (var g = 0; g < 81; g++) {
+    console.log("bruhs");
+    $("<div>")
+      .attr({
+        id: "grid-item" + g,
+        class: "grid-box",
+      })
+      .appendTo("#clickerGrid");
+    $("<img>")
+      .attr({
+        id: "coin" + g,
+        src: "./assets/images/Dogecoin-ticker.jpg",
+        class: "dogeCoin",
+      })
+      .appendTo("#grid-item" + g);
+    $("#coin" + g)
+      .hide()
+      .on("click", function (event) {
+        event.preventDefault();
+        clickCount++;
+        updateCount(clickCount);
+        event.currentTarget.style.display = "none";
+      });
+  }
 }
-for(var i=0; i<150;i++ ){
-  $("#coin"+randomArray[i]).hide()
-}
-},3000)
+var randomArray = [];
+setInterval(function () {
+  for (var i = 0; i < 81; i++) {
+    $("#coin" + i).show();
+    randomArray[i] = getRandom(0, 80);
+  }
+  for (var i = 0; i < 150; i++) {
+    $("#coin" + randomArray[i]).hide();
+  }
+}, 3000);
 
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-  clickPage.hide();
-  shopPage.hide();
-  HtpPage.hide();
-  
+clickPage.hide();
+shopPage.hide();
+HtpPage.hide();
