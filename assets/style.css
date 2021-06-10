@@ -43,7 +43,7 @@ p {
   font-size: 16px;
   margin: auto;
   background-color: gold;
-  border: 2px solid black;
+  ;
 }
 
 .btn {
@@ -115,7 +115,7 @@ html {
   padding: 0px;
 }
 #marquee2{
-height: 125px;
+height: 125px1;
 width: 100%;
 }
 
@@ -159,10 +159,75 @@ width: 100%;
   width: 40px;
   border-radius: 5px;
 }
+#convert{
+  color: black;
+  padding: 15px 32px;
+  display: block;
+  font-size: 16px;
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
+  text-align: center;
+
+}
+#save{
+  color: black;
+  padding: 15px 32px;
+  display: block;
+  font-size: 16px;
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.button{
+  color: black;
+  padding: 15px 32px;
+  display: block;
+  font-size: 16px;
+  margin: auto;
+  background-color: gold;
+  border: 2px solid black;
+  text-align: center;
+}
 .disable-select{
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none;
+}
+#currentCrypto{
+  font-weight: bold;
+  color: gold;
+  font-size: 25px;
+}
+
+#currentUSD{
+  font-weight: bold;
+  color: gold;
+  font-size: 25px;
+
+}
+
+#cryptoPrice{
+  font-weight: bold;
+  color: gold;
+  font-size: 25px;
+}
+
+h2{
+  font-weight: bold;
+  color: gold;
+  font-size: 20px;
+}
+
+#currentHash{
+  font-weight: bold;
+  color: gold;
+  font-size: 20px;
+}
+.button:hover, #save:hover, #convert:hover, .begin:hover {
+  background-color: blue;
 }
