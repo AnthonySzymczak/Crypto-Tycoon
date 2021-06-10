@@ -7,14 +7,10 @@
 
 const tax = 0.0725;
 
-
-
 let elem1 = document.getElementById("1");
 elem1.dataset.dollar = 125;
 elem1.dataset.hash = 0.5;
 elem1.addEventListener("click", subtractUSD);
-console.log(elem1);
-
 
 let elem2 = document.getElementById("2");
 elem2.dataset.dollar = 300;
@@ -110,24 +106,22 @@ elem18.dataset.hash = 16.0;
 elem18.addEventListener("click", subtractUSD);
 
 function subtractUSD(event) {
-
   var elem = event.target;
   let dollar = parseInt(elem.dataset.dollar);
-    let hash = parseFloat(elem.dataset.hash);
-  if (usdConversion < (dollar +(dollar * tax))) {
-      // You cannot purchase this upgrade, you do not have enough money!;
-      return;
-    } 
-    else {
-        usdConversion -= (dollar +(dollar * tax));
-        localStorage.setItem("USD-held",usdConversion);
-        $('#currentUSD').text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
-        DOGE_HASHRATE += hash;
-        localStorage.setItem("hashRate",DOGE_HASHRATE);
-        console.log(DOGE_HASHRATE,hash);
-        
-        elem.remove();
+  let hash = parseFloat(elem.dataset.hash);
+  if (usdConversion < dollar + dollar * tax) {
+    // You cannot purchase this upgrade, you do not have enough money!;
+    return;
+  } else {
+    usdConversion -= dollar + dollar * tax;
+    localStorage.setItem("USD-held", usdConversion);
+    $("#currentUSD").text(
+      "Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS)
+    );
+    DOGE_HASHRATE += hash;
+    localStorage.setItem("hashRate", DOGE_HASHRATE);
+    console.log(DOGE_HASHRATE, hash);
 
-    }
-  
+    elem.remove();
+  }
 }
