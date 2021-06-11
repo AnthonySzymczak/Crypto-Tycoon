@@ -270,24 +270,24 @@ function displayCurrentValues(clickCount, usdConversion, DOGE_HASHRATE) {
     "Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS)
   );
   cryptoHeld = convertDoge(clickCount);
-  $("#currentCrypto").text("Doge Coins:" + cryptoHeld);
+  $("#currentCrypto").text("Doge Coins: " + cryptoHeld);
   $("#currentHash").text(
-    "Current Hash Rate: " +
-      DOGE_HASHRATE.toFixed(DECIMAL_POINTS) +
-      " Hash Per Click"
+    "Hash per Click: " +
+      DOGE_HASHRATE.toFixed(DECIMAL_POINTS)
   );
 }
 //gamePage LOADS GAME ELEMENTS DYNAMICALLY
 function loadGamePageContainer(DOGE_HASHRATE) {
   $("<h3>").attr({ id: "cryptoPrice" }).appendTo("#gamePage");
   $("<h2>")
+    .text("Doge Coins: " + cryptoHeld)
+    .attr({ id: "currentCrypto" })
+    .appendTo("#gamePage");
+  $("<h2>")
     .text("Dollars Available: $" + usdConversion.toFixed(DECIMAL_POINTS))
     .attr({ id: "currentUSD" })
     .appendTo("#gamePage");
-  $("<h2>")
-    .text("Doge Coins:" + cryptoHeld)
-    .attr({ id: "currentCrypto" })
-    .appendTo("#gamePage");
+
   addClickerArea();
 
   //PUT FUNCTION HERE FOR GAME PAGE CLICKS^ DELETE ABOVE h1
@@ -481,7 +481,7 @@ function addClickerArea() {
     $("<div>")
       .attr({
         id: "grid-item" + g,
-        class: "grid-box disable-select",
+        class: "grid-box disable-select boxes",
       })
       .appendTo("#clickerGrid");
     $("<img>")

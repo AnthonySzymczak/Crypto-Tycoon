@@ -124,7 +124,7 @@ function subtractUSD(event) {
         DOGE_HASHRATE += hash;
         localStorage.setItem("hashRate",DOGE_HASHRATE);
         console.log(DOGE_HASHRATE,hash);
-        $("#currentHash").text("Current Hash Rate: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS) + " Hash Per Click")
+        $("#currentHash").text("Hash per Click: "+ DOGE_HASHRATE.toFixed(DECIMAL_POINTS))
         $("#balance").text("$"+usdConversion.toFixed(DECIMAL_POINTS))
         sound.play();
         elem.remove();
