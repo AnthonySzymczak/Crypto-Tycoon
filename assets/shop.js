@@ -1,14 +1,20 @@
 /* In this .js file you will see an interactive shop user interface 
     you will notice many purchaseable upgrades */
 
+
+    // Declaration of constant variables, the set tax rate for purchasing products has been set to 7.25%
+    // The constant variable sound is the *wow* effect that happens when you purchase an upgrade
+    const tax = 0.0725;
+    const sound = document.querySelector('#sound');
+
+
+
 //-----------------------------------------------
 //  VIDEO CARDS
 //-----------------------------------------------
 
-const tax = 0.0725;
-const sound = document.querySelector('#sound');
 
-
+// The variables elem1-18 correspond to the button id's inside
 
 let elem1 = document.getElementById("1");
 elem1.dataset.dollar = 125;
