@@ -13,6 +13,7 @@ Our goal is to be the next generation of clicker games, there is a certain je ne
 
 Withour further ado, here is... Crypto-Tycoon!
 
+![openscreen](https://user-images.githubusercontent.com/81388435/121791663-5e37c180-cbba-11eb-8175-7b1900a12e5b.png)
 
 
 
@@ -20,17 +21,20 @@ Here is our opening page for the game. Across the top of the screen there is a l
 Below that you will see our intro video, followed by the start game option. 
 
 
+![blankopenscreen](https://user-images.githubusercontent.com/81388435/121791668-6a238380-cbba-11eb-92ae-aee15151b07c.png)
 
 
 
 Here is the How to Play page, you will note the instructions on how to play here, including a note that taxes are a real thing!
 
+![howtoplay](https://user-images.githubusercontent.com/81388435/121791673-79a2cc80-cbba-11eb-8f29-310a63bc3744.png)
 
 
 
 Welcome to the in-game Shop! Here you can purchase all of your upgrades to get mining at faster hash rates. Like in real life there is a tax on the items you purchase, so beware not all the prices are as they seem!
 
 
+![ShopPage](https://user-images.githubusercontent.com/81388435/121791671-73aceb80-cbba-11eb-8e09-da997cef3509.png)
 
 
 

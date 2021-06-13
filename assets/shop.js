@@ -1,14 +1,24 @@
 /* In this .js file you will see an interactive shop user interface 
     you will notice many purchaseable upgrades */
 
+
+    // Declaration of constant variables, the set tax rate for purchasing products has been set to 7.25%
+    // The constant variable sound is the *wow* effect that happens when you purchase an upgrade
+    const tax = 0.0725;
+    const sound = document.querySelector('#sound');
+
+
+
 //-----------------------------------------------
 //  VIDEO CARDS
 //-----------------------------------------------
 
-const tax = 0.0725;
-const sound = document.querySelector('#sound');
 
-
+/* 
+The variables elem1-18 correspond to the button id's inside the html
+ you will notice  the .dataset value, this corresponds with setting a value to the element id's
+ in this case it pertains to the dollar amounts, and the increase of hashrates for each upgrade purchased.
+ */
 
 let elem1 = document.getElementById("1");
 elem1.dataset.dollar = 125;
@@ -108,15 +118,38 @@ elem18.dataset.dollar = 5000;
 elem18.dataset.hash = 16.0;
 elem18.addEventListener("click", subtractUSD);
 
-function subtractUSD(event) {
-  var elem = event.target;
-  let dollar = parseInt(elem.dataset.dollar);
 
-    let hash = parseFloat(elem.dataset.hash);
+
+
+//    Here we have the function named subtractUSD, it targets the event (which is the click to purchase the upgrade)
+
+function subtractUSD(event) {
+  
+  // The variable elem is set to target the event 
+
+  var elem = event.target;
+
+  //Here we declare that the variable 'dollar' is set to the .dataset value of the dollar
+  let dollar = parseInt(elem.dataset.dollar);
+  //Here we declare the varibable hash, which is attached to the element.dataset for the increase of hashrates in upgrades. 
+  let hash = parseFloat(elem.dataset.hash);
+
+  /* This is the if, else section
+      It states that when your amount of usd held is less than the dollar+tax price amount,
+      it will return and nothing will happen.
+  
+  */
   if (usdConversion < (dollar +(dollar * tax))) {
       // You cannot purchase this upgrade, you do not have enough money!;
       return;
-    } 
+    }
+    
+    /*
+    The declaration of this else section says, okay you do have enough money, we will subtract the set price amount+tax 
+    from your total usd held, store it into localstorage, increase the hashrate set value, store that into localstorage,
+    update your balance of current usd held, play a *wow* sound for purchasing the upgrades, and finally removing the button
+    from view seeing as how upgrades should only be able to be purchased once in real life.
+    */
     else {
         usdConversion -= (dollar +(dollar * tax));
         localStorage.setItem("USD-held",usdConversion);
