@@ -7,7 +7,7 @@ const SAVED_VARIABLES = 2;
 const CRYPTOCURRENCIES_CONVERSION = "DOGE,ETH,BTC";
 const CRYPTOCURRENCIES_TREND = "doge-dogecoin,eth-ethereum,btc-bitcoin";
 const DECIMAL_POINTS = 2;
-const TWEETS = 3;
+const TWEETS = 5;
 const CONVERSION_RATE = 0.9;
 const backgroundsound = document.querySelector('#backgroundSound');
 backgroundsound.volume = 0.1;
@@ -117,9 +117,8 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
       return response.json();
     })
     .then(function (data) {
-      // twitterContainer();
       for (var i = 0; i < TWEETS; i++) {
-        const {
+        var {
           date,
           like_count,
           media_link,
@@ -128,15 +127,21 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
           user_image_link,
           user_name,
         } = data[i];
-
+        var hasMedia = 0;
+        var conversionDate = new Date(date);
+        conversionDate = conversionDate.toLocaleDateString("en-US");
+        if(media_link == null)
+        {} 
+        else {
+        hasMedia = 1
         var splitMedia = media_link.split("/");
         if (splitMedia.indexOf("media") == -1) {
           var isVideo = 1;
         } else {
           isVideo = 0;
         }
-        var conversionDate = new Date(date);
-        conversionDate = conversionDate.toLocaleDateString("en-US");
+        var status = status.split("https")[0]
+        }
         twitterFeed(
           i,
           {
@@ -148,7 +153,8 @@ function cryptoTwitter(CRYPTO_TWITTER_API) {
             user_image_link,
             user_name,
           },
-          isVideo
+          isVideo,
+          hasMedia
         );
       }
     });
@@ -342,7 +348,7 @@ function twitterContainer() {
     .appendTo("#aside");
 }
 //CREATES TWITTER FEED
-function twitterFeed(i, data, isVideo) {
+function twitterFeed(i, data, isVideo, hasMedia) {
   $("<div>")
     .attr({ id: "twitterContainer" + i, class: "card" })
     .appendTo("#marquee2");
@@ -367,7 +373,7 @@ function twitterFeed(i, data, isVideo) {
     .text(data.status)
     .attr({ id: "twitterContent" + i, class: "content" })
     .appendTo("#twitterContentContainer" + i);
-
+  if(hasMedia == 1)  
   twitterMedia(i, data, isVideo);
   $("<footer>")
     .attr({ id: "twitterFooterContainer" + i, class: "card-footer" })
