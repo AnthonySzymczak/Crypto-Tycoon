@@ -39,6 +39,10 @@ Welcome to the in-game Shop! Here you can purchase all of your upgrades to get m
 
 
 
+Here is the game itself, a nice grid where the coins will automattically generate and switch out every 3 seconds, Click as fast as you can and get mining!
+
+![gamescreen](https://user-images.githubusercontent.com/81388435/121791983-9987bf80-cbbd-11eb-9504-6246931d4875.png)
+
 Now we ask you all to please remember this is our first version release, once we get more and more feed back you can expect our team of developers to bring...
 1) A more interactive interface
 2) Random events that will happen as you mine! (Anthony is most excited for this feature release.)
@@ -50,4 +54,3 @@ and much much more!
 Link to deployed application.
 https://anthonyszymczak.github.io/Crypto-Tycoon/
 
-![crypto tycoon](https://user-images.githubusercontent.com/82052286/121594448-132b7c00-ca0b-11eb-92be-d6e80071aaeb.JPG)
